@@ -1,18 +1,47 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './index.css';
+import React, { useState, useRef } from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+import { useNavigate } from "react-router-dom";
 
-const container = document.getElementById('root');
+import SetupInterceptors from "./SetupInterceptor";
+import Loading from "./componentes/Loading";
+import store from "./app/store";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Mensagem from "./componentes/Mensagem";
+
+let persistor = persistStore(store);
+const container = document.getElementById("root");
 const root = createRoot(container);
+
+function NavigateFunctionComponent() {
+  let navigate = useNavigate();
+  const [ran, setRan] = useState(false);
+
+  if (!ran) {
+    SetupInterceptors(navigate, store);
+    setRan(true);
+  }
+  return <></>;
+}
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate persistor={persistor}>
+        <BrowserRouter>
+          {<NavigateFunctionComponent />}
+          <Mensagem />
+          <Loading>
+            <App />
+          </Loading>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
