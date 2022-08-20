@@ -25,6 +25,14 @@ const listarPaciente = async () => {
   return resposta;
 };
 
+const listarParcialPaciente = async (nomeParcial) => {
+  const resposta = await axios.get(
+    `${URL_API}/v1/paciente/listarParcial?nomeParcial=${nomeParcial}`
+  );
+
+  return resposta;
+};
+
 const consultarPaciente = async (idPaciente) => {
   const resposta = await axios.get(
     `${URL_API}/v1/paciente/consultar?idPaciente=${idPaciente}`
@@ -36,6 +44,7 @@ const consultarPaciente = async (idPaciente) => {
 export {
   registrarPaciente,
   listarPaciente,
+  listarParcialPaciente,
   consultarPaciente,
   alterarPaciente,
 };

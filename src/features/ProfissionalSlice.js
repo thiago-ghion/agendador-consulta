@@ -10,13 +10,17 @@ import {
   consultarVinculo,
   listarConfiguracaoHorario,
   listarConfiguracaoHorarioPeriodo,
+  listarDataDisponivel,
 } from "../servicos/ProfissionalServicos";
 
 const initialState = {
   listaTodos: [],
+  listaProfissionalVigente: [],
   listaHorario: [],
   listaConfiguracaoPeriodo: [],
   listaConfiguracao: [],
+  listaDataDisponivel: [],
+  listaHorarioDisponivel: [],
 };
 
 initialState.listaHorario[""] = {};
@@ -40,10 +44,7 @@ export const alterarProfissionalAction = createAsyncThunk(
     { fulfillWithValue, rejectWithValue }
   ) => {
     try {
-      const { data } = await alterarProfissional(
-        idProfissional,
-        requisicao,
-      );
+      const { data } = await alterarProfissional(idProfissional, requisicao);
       return fulfillWithValue(data);
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -169,10 +170,37 @@ export const listarConfiguracaoHorarioPeriodoAction = createAsyncThunk(
   }
 );
 
+export const listarDataDisponivelAction = createAsyncThunk(
+  "profissional/listarDataDisponivel",
+  async (
+    { idProfissional, dataInicio, dataFim },
+    { fulfillWithValue, rejectWithValue }
+  ) => {
+    try {
+      console.log("@@@@ idProfissional", idProfissional);
+      const { data } = await listarDataDisponivel(
+        idProfissional,
+        dataInicio,
+        dataFim
+      );
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const profissionalSlice = createSlice({
   name: "profissional",
   initialState,
-  reducers: {},
+  reducers: {
+    limparListaDataDisponivel: (state, { payload }) => {
+      state.listaDataDisponivel = [];
+    },
+    limparListaHorarioDisponivel: (state, { payload }) => {
+      state.listaHorarioDisponivel = [];
+    },
+  },
   extraReducers: {
     [registrarProfissionalAction.pending]: () => {},
     [registrarProfissionalAction.fulfilled]: (state, { payload }) => {},
@@ -205,7 +233,9 @@ export const profissionalSlice = createSlice({
     [desativarProfissionalAction.rejected]: () => {},
 
     [listarVigenteAction.pending]: () => {},
-    [listarVigenteAction.fulfilled]: (state, { payload }) => {},
+    [listarVigenteAction.fulfilled]: (state, { payload }) => {
+      state.listaProfissionalVigente = payload;
+    },
     [listarVigenteAction.rejected]: () => {},
 
     [listarTodosAction.pending]: () => {},
@@ -215,7 +245,10 @@ export const profissionalSlice = createSlice({
     [listarTodosAction.rejected]: () => {},
 
     [listarHorarioDisponivelAction.pending]: () => {},
-    [listarHorarioDisponivelAction.fulfilled]: (state, { payload }) => {},
+    [listarHorarioDisponivelAction.fulfilled]: (state, { payload }) => {
+      console.log("payload", payload);
+      state.listaHorarioDisponivel = payload;
+    },
     [listarHorarioDisponivelAction.rejected]: () => {},
 
     [consultarVinculoAction.pending]: () => {},
@@ -236,7 +269,18 @@ export const profissionalSlice = createSlice({
       state.listaConfiguracaoPeriodo = payload;
     },
     [listarConfiguracaoHorarioPeriodoAction.rejected]: () => {},
+
+    [listarDataDisponivelAction.pending]: () => {},
+    [listarDataDisponivelAction.fulfilled]: (state, { payload }) => {
+      state.listaDataDisponivel = payload;
+    },
+    [listarDataDisponivelAction.rejected]: (state) => {
+      state.listaDataDisponivel = [];
+    },
   },
 });
+
+export const { limparListaDataDisponivel, limparListaHorarioDisponivel } =
+  profissionalSlice.actions;
 
 export default profissionalSlice.reducer;

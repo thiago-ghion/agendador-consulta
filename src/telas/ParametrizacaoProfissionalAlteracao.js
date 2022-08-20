@@ -46,6 +46,7 @@ function ParametrizacaoProfissionaAlteracao(props) {
         <Button
           variant={isHorarioAtivo(row.idHorario) ? "danger" : "success"}
           onClick={() => {
+            console.log('@@@@@@@@@@@@@@@@@@@@@@');
             setListaVinculo((current) =>
               current.map((obj) => {
                 if (obj.idHorario === row.idHorario && obj.data === data) {

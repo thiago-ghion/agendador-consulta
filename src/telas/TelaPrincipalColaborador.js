@@ -17,7 +17,7 @@ import {
   faDoorOpen,
   faTable,
   faCalendarDay,
-  faIdBadge
+  faIdBadge,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "../App.css";
@@ -29,6 +29,8 @@ import ParametrizacaoHorario from "./ParametrizacaoHorario";
 import ParametrizacaoProfissional from "./ParametrizacaoProfissional";
 import ParametrizacaoPaciente from "./ParametrizacaoPaciente";
 import ListarRegistroAcesso from "./ListarRegistroAcesso";
+import AgendarConsulta from "./AgendarConsulta";
+import ListarConsulta from "./ListarConsulta";
 
 function TelaPrincipalColaborador() {
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ function TelaPrincipalColaborador() {
 
   const { usuario } = useSelector((state) => state.login);
   let [estaPronto, setEstaPronto] = useState(false);
-  let [telaAtiva, setTelaAtiva] = useState(2);
+  let [telaAtiva, setTelaAtiva] = useState(1);
 
   useEffect(() => {
     const verificarToken = async () => {
@@ -84,8 +86,12 @@ function TelaPrincipalColaborador() {
 
   const escolherTelaAtiva = () => {
     switch (telaAtiva) {
+      case 1:
+        return <AgendarConsulta></AgendarConsulta>;
       case 2:
         return <ParametrizacaoPaciente></ParametrizacaoPaciente>;
+      case 3:
+        return <ListarConsulta></ListarConsulta>;
       case 4:
         return <ParametrizacaoHorario></ParametrizacaoHorario>;
       case 5:
@@ -125,7 +131,6 @@ function TelaPrincipalColaborador() {
                     onClick={() => {
                       setTelaAtiva(1);
                     }}
-                    disabled
                   >
                     <FontAwesomeIcon icon={faCalendar} />
                     {` Agendar consulta`}
@@ -144,7 +149,6 @@ function TelaPrincipalColaborador() {
                     onClick={() => {
                       setTelaAtiva(3);
                     }}
-                    disabled
                   >
                     <FontAwesomeIcon icon={faCalendarDay} />
 

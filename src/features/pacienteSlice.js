@@ -3,6 +3,7 @@ import {
   alterarPaciente,
   consultarPaciente,
   listarPaciente,
+  listarParcialPaciente,
   registrarPaciente,
 } from "../servicos/PacienteServicos";
 
@@ -47,6 +48,18 @@ export const listarPacienteAction = createAsyncThunk(
   }
 );
 
+export const listarParcialPacienteAction = createAsyncThunk(
+  "paciente/listarParcial",
+  async ({ nomeParcial }, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const { data } = await listarParcialPaciente(nomeParcial);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const consultarPacienteAction = createAsyncThunk(
   "paciente/consultar",
   async ({ idPaciente }, { fulfillWithValue, rejectWithValue }) => {
@@ -62,7 +75,11 @@ export const consultarPacienteAction = createAsyncThunk(
 export const pacienteSlice = createSlice({
   name: "paciente",
   initialState,
-  reducers: {},
+  reducers: {
+    limparListaPaciente: (state, { payload }) => {
+      state.listaPaciente = [];
+    },
+  },
   extraReducers: {
     [registrarPacienteAction.pending]: () => {},
     [registrarPacienteAction.fulfilled]: (state, { payload }) => {},
@@ -78,6 +95,12 @@ export const pacienteSlice = createSlice({
     },
     [listarPacienteAction.rejected]: () => {},
 
+    [listarParcialPacienteAction.pending]: () => {},
+    [listarParcialPacienteAction.fulfilled]: (state, { payload }) => {
+      state.listaPaciente = payload;
+    },
+    [listarParcialPacienteAction.rejected]: () => {},
+
     [consultarPacienteAction.pending]: () => {},
     [consultarPacienteAction.fulfilled]: (state, { payload }) => {
       state.paciente = payload;
@@ -85,5 +108,7 @@ export const pacienteSlice = createSlice({
     [consultarPacienteAction.rejected]: () => {},
   },
 });
+
+export const { limparListaPaciente } = pacienteSlice.actions;
 
 export default pacienteSlice.reducer;

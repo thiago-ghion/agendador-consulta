@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -80,35 +81,39 @@ function LoginColaborador() {
         <Row className="justify-content-md-center">
           <Col md={6}>
             <Form.Group className="mb-3" controlId="formUsuario">
-              <Form.Control
-                type="text"
-                placeholder="Informe o usuário"
-                value={usuario}
-                autoFocus
-                onChange={(event) => {
-                  setUsuario(event.target.value);
-                }}
-                ref={(input) => {
-                  usuarioInput = input;
-                }}
-              />
+              <FloatingLabel label="Usuário" className="mb-3">
+                <Form.Control
+                  type="text"
+                  placeholder="Informe o usuário"
+                  value={usuario}
+                  autoFocus
+                  onChange={(event) => {
+                    setUsuario(event.target.value);
+                  }}
+                  ref={(input) => {
+                    usuarioInput = input;
+                  }}
+                />
+              </FloatingLabel>
             </Form.Group>
           </Col>
         </Row>
         <Row className="justify-content-md-center">
           <Col md={6}>
             <Form.Group className="mb-3" controlId="formUsuario">
-              <Form.Control
-                type="password"
-                placeholder="Informe a senha"
-                value={senha}
-                onChange={(event) => {
-                  setSenha(event.target.value);
-                }}
-                ref={(input) => {
-                  senhaInput = input;
-                }}
-              />
+              <FloatingLabel label="Senha" className="mb-3">
+                <Form.Control
+                  type="password"
+                  placeholder="Informe a senha"
+                  value={senha}
+                  onChange={(event) => {
+                    setSenha(event.target.value);
+                  }}
+                  ref={(input) => {
+                    senhaInput = input;
+                  }}
+                />
+              </FloatingLabel>
             </Form.Group>
           </Col>
         </Row>

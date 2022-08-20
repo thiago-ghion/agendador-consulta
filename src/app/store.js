@@ -19,6 +19,7 @@ import usuarioReducer from "../features/usuarioSlice";
 import horarioReducer from "../features/horarioSlice";
 import profissionalReducer from "../features/ProfissionalSlice";
 import pacienteReducer from "../features/pacienteSlice";
+import consultaReducer from "../features/consultaSlice";
 
 const persistConfig = {
   key: "agendador",
@@ -34,6 +35,7 @@ const reducers = combineReducers({
   horario: horarioReducer,
   profissional: profissionalReducer,
   paciente: pacienteReducer,
+  consulta: consultaReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

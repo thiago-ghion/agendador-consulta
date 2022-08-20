@@ -5,6 +5,7 @@ import {
   introspectToken,
   listarRegistroAcesso,
 } from "../servicos/LoginServicos";
+import moment from "moment";
 
 const initialState = {
   usuario: {},
@@ -104,7 +105,10 @@ export const loginSlice = createSlice({
 
     [listarRegistroAcessoAction.pending]: () => {},
     [listarRegistroAcessoAction.fulfilled]: (state, { payload }) => {
-      state.listaAcesso = payload;
+      state.listaAcesso = payload.map((item) => ({
+        ...item,
+        timestampAcesso: moment(item.timestampAcesso).format('DD/MM/YYYY HH:mm:ss'),
+      }));
     },
     [listarRegistroAcessoAction.rejected]: (state) => {
       state.listaAcesso = [];
