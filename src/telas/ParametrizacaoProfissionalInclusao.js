@@ -145,12 +145,10 @@ function ParametrizacaoProfissionaInclusao(props) {
       });
     });
 
-    console.log(requisicao);
     const resposta = await dispatch(
       registrarProfissionalAction({ requisicao })
     );
 
-    console.log("resposta", resposta);
     if (resposta.error !== undefined) {
       if (resposta.payload.campo === 1) {
         nomeProfissionalInput.focus();

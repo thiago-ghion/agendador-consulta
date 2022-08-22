@@ -74,7 +74,6 @@ export const horarioSlice = createSlice({
       const horario = state.lista.find(
         (item) => item.idHorario === payload.idHorario
       );
-      console.log(`@@@@ ativar ${payload.idHorario} - ${horario}`)
       if (horario !== undefined) {
         horario.indicadorAtivo = "S";
       }
@@ -86,7 +85,6 @@ export const horarioSlice = createSlice({
       const horario = state.lista.find(
         (item) => item.idHorario === payload.idHorario
       );
-      console.log(`@@@@ desativar ${payload.idHorario} - ${horario}`)
       if (horario !== undefined) {
         horario.indicadorAtivo = "N";
       }

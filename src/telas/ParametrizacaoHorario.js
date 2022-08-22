@@ -46,7 +46,6 @@ function ParametrizacaoHorario() {
     const resposta = await dispatch(
       registrarHorarioAction({ idHorario: horario })
     );
-    console.log("resposta", resposta);
     if (resposta.error === undefined) {
       setHorario("");
       dispatch(listarHorarioAction());
@@ -61,12 +60,10 @@ function ParametrizacaoHorario() {
         variant={row.indicadorAtivo === "S" ? "danger" : "success"}
         onClick={() => {
           if (row.indicadorAtivo === "S") {
-            console.log('@@@@ desativando')
             dispatch(desativarHorarioAction({ idHorario: row.idHorario }));
           }
 
           if (row.indicadorAtivo === "N") {
-            console.log('@@@@ ativando')
             dispatch(ativarHorarioAction({ idHorario: row.idHorario }));
           }
         }}

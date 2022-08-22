@@ -37,7 +37,6 @@ function TrocaSenhaInternaColaborador() {
   let [senhaRepetida, setSenhaRepetida] = useState("");
 
   const isFormularioValido = () => {
-    console.log("usuario", usuario);
     dispatch(setErro(null));
 
     if (senhaAnterior === "") {

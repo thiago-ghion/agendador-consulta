@@ -46,7 +46,6 @@ function ParametrizacaoProfissionaAlteracao(props) {
         <Button
           variant={isHorarioAtivo(row.idHorario) ? "danger" : "success"}
           onClick={() => {
-            console.log('@@@@@@@@@@@@@@@@@@@@@@');
             setListaVinculo((current) =>
               current.map((obj) => {
                 if (obj.idHorario === row.idHorario && obj.data === data) {
@@ -93,14 +92,12 @@ function ParametrizacaoProfissionaAlteracao(props) {
     const data = evento.format("DD/MM/YYYY");
 
     if (listaVinculo.find((item) => item.data === data) === undefined) {
-      console.log("data", data.replaceAll("/", "."));
       const resposta = await dispatch(
         listarConfiguracaoHorarioAction({
           idProfissional: props.idProfissional,
           dataPesquisa: data.replaceAll("/", "."),
         })
       );
-      console.log("resposta", resposta);
       setListaVinculo((current) =>
         current.concat(
           props.listaHorario.map((obj) => {
@@ -174,7 +171,6 @@ function ParametrizacaoProfissionaAlteracao(props) {
       });
     });
 
-    console.log(requisicao);
     const resposta = await dispatch(
       alterarProfissionalAction({
         idProfissional: props.idProfissional,
@@ -182,7 +178,6 @@ function ParametrizacaoProfissionaAlteracao(props) {
       })
     );
 
-    console.log("resposta", resposta);
     if (resposta.error !== undefined) {
       if (resposta.payload.campo === 1) {
         nomeProfissionalInput.focus();

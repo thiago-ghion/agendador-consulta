@@ -38,7 +38,6 @@ function ListarRegistroAcesso() {
     const resposta = await dispatch(
       listarRegistroAcessoAction({ dataInicio, dataFim })
     );
-    console.log("resposta", resposta);
   };
 
   const colunas = [
@@ -73,15 +72,18 @@ function ListarRegistroAcesso() {
             onChange={(evento) => {
               setDataInicio(evento.format("DD/MM/YYYY"));
             }}
+            test={{ "aria-label": "dataInicio" }}
           ></DatePicker>
         </Col>
         <Col>
           <DatePicker
+            aria-label="dataFim"
             initialValue={null}
             value={dataFim}
             onChange={(evento) => {
               setDataFim(evento.format("DD/MM/YYYY"));
             }}
+            test={{ "aria-label": "dataFim" }}
           ></DatePicker>
         </Col>
         <Col>
@@ -92,7 +94,7 @@ function ListarRegistroAcesso() {
         <Col>
           <div>
             <ToolkitProvider
-              keyField="idHorario"
+              keyField="timestampAcesso"
               data={listaAcesso}
               columns={colunas}
               search

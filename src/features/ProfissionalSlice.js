@@ -177,7 +177,6 @@ export const listarDataDisponivelAction = createAsyncThunk(
     { fulfillWithValue, rejectWithValue }
   ) => {
     try {
-      console.log("@@@@ idProfissional", idProfissional);
       const { data } = await listarDataDisponivel(
         idProfissional,
         dataInicio,
@@ -246,7 +245,6 @@ export const profissionalSlice = createSlice({
 
     [listarHorarioDisponivelAction.pending]: () => {},
     [listarHorarioDisponivelAction.fulfilled]: (state, { payload }) => {
-      console.log("payload", payload);
       state.listaHorarioDisponivel = payload;
     },
     [listarHorarioDisponivelAction.rejected]: () => {},

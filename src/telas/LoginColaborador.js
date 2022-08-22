@@ -50,9 +50,7 @@ function LoginColaborador() {
     if (resposta.error === undefined) {
       navigate("/menuColaborador");
     } else {
-      console.log("resposta", resposta);
       if (resposta.payload.senhaResetada !== undefined) {
-        console.log("vai mudar a rota");
         navigate("/trocaSenhaColaborador");
       }
     }
