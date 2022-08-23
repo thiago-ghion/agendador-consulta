@@ -72,16 +72,10 @@ function TelaPrincipalColaborador() {
   };
 
   const formatarHeader = () => {
-    switch (usuario.nivelUsuario) {
-      case 1:
-        return `Paciente: ${usuario.nome}`;
-      case 2:
-        return `Colaborador: ${usuario.nome}`;
-      case 3:
-        return `Administrador: ${usuario.nome}`;
-      default:
-        return `${usuario.nome}`;
+    if (usuario.nivelUsuario === 2) {
+      return `Colaborador: ${usuario.nome}`;
     }
+    return `Administrador: ${usuario.nome}`;
   };
 
   const escolherTelaAtiva = () => {
@@ -230,7 +224,7 @@ function TelaPrincipalColaborador() {
         </div>
       );
     }
-    return null;
+    return <></>;
   };
 
   return carregarTela();

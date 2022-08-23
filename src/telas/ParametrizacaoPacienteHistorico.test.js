@@ -4,14 +4,9 @@ import { setupServer } from "msw/node";
 import { renderWithProviders } from "../util/test-utils";
 
 import ParametrizacaoPacienteHistorico from "./ParametrizacaoPacienteHistorico";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 
-let mockListaPaciente = [];
-
-export const handlers = [
-  rest.get("http://localhost:5000/v1/paciente/listar", (req, res, ctx) => {
-    return res(ctx.json(mockListaPaciente));
-  }),
-];
+export const handlers = [];
 
 const server = setupServer(...handlers);
 
@@ -24,11 +19,19 @@ afterEach(() => server.resetHandlers());
 // Disable API mocking after the tests are done.
 afterAll(() => server.close());
 
-beforeEach(() => {
-  mockListaPaciente = [];
-});
+beforeEach(() => {});
 
 test("Renderização componente", async () => {
   const tela = renderWithProviders(<ParametrizacaoPacienteHistorico />);
   expect(tela.firstChild).toMatchSnapshot();
+});
+
+test("Botão voltar", async () => {
+  renderWithProviders(
+    <ParametrizacaoPacienteHistorico setTelaAtiva={() => {}} />
+  );
+  const voltar = await waitFor(() =>
+    screen.findByRole("button", { name: /Voltar/ })
+  );
+  fireEvent.click(voltar);
 });
