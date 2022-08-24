@@ -4,6 +4,10 @@ import { setupServer } from "msw/node";
 import { renderWithProviders } from "../util/test-utils";
 
 import ParametrizacaoPaciente from "./ParametrizacaoPaciente";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
+
+jest.mock("./ParametrizacaoPacienteManutencao", () => () => <></>);
+jest.mock("./ParametrizacaoPacienteHistorico", () => () => <></>);
 
 let mockListaPaciente = [];
 
@@ -31,4 +35,32 @@ beforeEach(() => {
 test("Renderização componente", async () => {
   const tela = renderWithProviders(<ParametrizacaoPaciente />);
   expect(tela.firstChild).toMatchSnapshot();
+});
+
+test("Modo inclusão de paciente", async () => {
+  renderWithProviders(<ParametrizacaoPaciente />);
+  const incluir = await waitFor(() =>
+    screen.findByRole("button", { name: /Incluir/i })
+  );
+  fireEvent.click(incluir);
+});
+
+test("Modo alteração de paciente", async () => {
+  mockListaPaciente = [{ idPaciente: 1, nomePaciente: "Maria da Silva" }];
+
+  renderWithProviders(<ParametrizacaoPaciente />);
+  const alterar = await waitFor(() =>
+    screen.findByRole("button", { name: /Maria da Silva/i })
+  );
+  fireEvent.click(alterar);
+});
+
+test("Modo histórico de consulta do paciente", async () => {
+  mockListaPaciente = [{ idPaciente: 1, nomePaciente: "Maria da Silva" }];
+
+  renderWithProviders(<ParametrizacaoPaciente />);
+  const historico = await waitFor(() =>
+    screen.findByRole("button", { name: /Histórico Consulta/i })
+  );
+  fireEvent.click(historico);
 });

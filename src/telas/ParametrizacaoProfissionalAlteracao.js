@@ -138,7 +138,7 @@ function ParametrizacaoProfissionaAlteracao(props) {
         );
       })
       .map((item) => (
-        <option selected={item === data} value={item}>
+        <option key={item.idHorario} selected={item === data} value={item}>
           {item}
         </option>
       ));
@@ -232,6 +232,7 @@ function ParametrizacaoProfissionaAlteracao(props) {
           <Col md={6}></Col>
           <Col>
             <Form.Select
+              data-testid={`listaHorarioCarregado`}
               onChange={(evento) => {
                 const dataSelecionada = moment(
                   evento.target.value,
