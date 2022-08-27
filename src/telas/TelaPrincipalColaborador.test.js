@@ -45,12 +45,13 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(
-    <Router>
-      <TelaPrincipalColaborador />
-    </Router>
-  );
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(
+    renderWithProviders(
+      <Router>
+        <TelaPrincipalColaborador />
+      </Router>
+    )
+  ).toMatchSnapshot();
 });
 
 test("Sem token na sessão", async () => {
@@ -320,4 +321,9 @@ test("Menu carregado - Administrador", async () => {
     screen.findByRole("button", { name: /Registros de acesso/i })
   );
   fireEvent.click(registroAcesso);
+
+  const sair = await waitFor(() =>
+    screen.findByRole("button", { name: /Sair/i })
+  );
+  fireEvent.click(sair);
 });

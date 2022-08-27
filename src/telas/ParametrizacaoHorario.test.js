@@ -54,8 +54,7 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(<ParametrizacaoHorario />);
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(renderWithProviders(<ParametrizacaoHorario />)).toMatchSnapshot();
 });
 
 test("Registrar horário - Sucesso", async () => {

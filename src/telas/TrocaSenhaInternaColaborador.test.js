@@ -34,8 +34,9 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(<TrocaSenhaInternaColaborador />);
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(
+    renderWithProviders(<TrocaSenhaInternaColaborador />)
+  ).toMatchSnapshot();
 });
 
 test("Falha no preenchimento", async () => {

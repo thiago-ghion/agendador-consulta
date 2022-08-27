@@ -6,21 +6,6 @@ import { renderWithProviders } from "../util/test-utils";
 import ParametrizacaoPacienteManutencao from "./ParametrizacaoPacienteManutencao";
 import { screen, fireEvent, waitFor } from "@testing-library/react";
 
-//Polyfill para o replaceAll
-if (!String.prototype.replaceAll) {
-  String.prototype.replaceAll = function (str, newStr) {
-    // If a regex pattern
-    if (
-      Object.prototype.toString.call(str).toLowerCase() === "[object regexp]"
-    ) {
-      return this.replace(str, newStr);
-    }
-
-    // If a string
-    return this.replace(new RegExp(str, "g"), newStr);
-  };
-}
-
 let mockConsultar = {};
 let estadoConsultar = 200;
 let mockRegistrar = {};
@@ -64,8 +49,9 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(<ParametrizacaoPacienteManutencao />);
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(
+    renderWithProviders(<ParametrizacaoPacienteManutencao />)
+  ).toMatchSnapshot();
 });
 
 test("Renderizar em modo de alteração - Telefone móvel", async () => {

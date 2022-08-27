@@ -112,7 +112,7 @@ function ParametrizacaoProfissionaInclusao(props) {
         );
       })
       .map((item) => (
-        <option selected={item === data} value={item}>
+        <option key={item} selected={item === data} value={item}>
           {item}
         </option>
       ));

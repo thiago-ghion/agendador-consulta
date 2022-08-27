@@ -7,7 +7,7 @@ function Loading(props) {
   return (
     <div>
       {isLoading ? (
-        <div className="loader-container">
+        <div data-testid="load" className="loader-container">
           <div className="spinner"> </div>
         </div>
       ) : null}

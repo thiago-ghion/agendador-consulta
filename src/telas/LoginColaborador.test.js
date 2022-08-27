@@ -5,14 +5,16 @@ import { renderWithProviders } from "../util/test-utils";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import LoginColaborador from "./LoginColaborador";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 
-let mockListaProfissionalVigente = [];
+let mockLogin = {};
+let estadoLogin = 200;
 
 export const handlers = [
-  rest.get(
-    "http://localhost:5000/v1/profissional/listarVigente",
+  rest.post(
+    "http://localhost:5000/v1/seguranca/loginColaborador",
     (req, res, ctx) => {
-      return res(ctx.json(mockListaProfissionalVigente));
+      return res(ctx.status(estadoLogin), ctx.json(mockLogin));
     }
   ),
 ];
@@ -29,14 +31,108 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 beforeEach(() => {
-  mockListaProfissionalVigente = [];
+  mockLogin = {};
+  estadoLogin = 200;
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(
+  expect(renderWithProviders(
+    <Router>
+      <LoginColaborador />
+    </Router>
+  )).toMatchSnapshot();
+});
+
+test("Usuário não preenchido ", async () => {
+  renderWithProviders(
     <Router>
       <LoginColaborador />
     </Router>
   );
-  expect(tela.firstChild).toMatchSnapshot();
+
+  const login = await waitFor(() => screen.findByRole("button", /Login/i));
+  fireEvent.click(login);
+});
+
+test("Senha não preenchido ", async () => {
+  renderWithProviders(
+    <Router>
+      <LoginColaborador />
+    </Router>
+  );
+
+  const usuario = await waitFor(() =>
+    screen.findByPlaceholderText("Informe o usuário")
+  );
+  fireEvent.change(usuario, { target: { value: "usuarioteste" } });
+  const login = await waitFor(() => screen.findByRole("button", /Login/i));
+  fireEvent.click(login);
+});
+
+test("Login com falha", async () => {
+  estadoLogin = 400;
+
+  renderWithProviders(
+    <Router>
+      <LoginColaborador />
+    </Router>
+  );
+
+  const usuario = await waitFor(() =>
+    screen.findByPlaceholderText("Informe o usuário")
+  );
+  fireEvent.change(usuario, { target: { value: "usuarioteste" } });
+
+  const senha = await waitFor(() =>
+    screen.findByPlaceholderText("Informe a senha")
+  );
+  fireEvent.change(senha, { target: { value: "12345678" } });
+
+  const login = await waitFor(() => screen.findByRole("button", /Login/i));
+  fireEvent.click(login);
+});
+
+test("Login com falha - senha resetada", async () => {
+  estadoLogin = 400;
+  mockLogin = { senhaResetada: true };
+
+  renderWithProviders(
+    <Router>
+      <LoginColaborador />
+    </Router>
+  );
+
+  const usuario = await waitFor(() =>
+    screen.findByPlaceholderText("Informe o usuário")
+  );
+  fireEvent.change(usuario, { target: { value: "usuarioteste" } });
+
+  const senha = await waitFor(() =>
+    screen.findByPlaceholderText("Informe a senha")
+  );
+  fireEvent.change(senha, { target: { value: "12345678" } });
+
+  const login = await waitFor(() => screen.findByRole("button", /Login/i));
+  fireEvent.click(login);
+});
+
+test("Login com sucesso", async () => {
+  renderWithProviders(
+    <Router>
+      <LoginColaborador />
+    </Router>
+  );
+
+  const usuario = await waitFor(() =>
+    screen.findByPlaceholderText("Informe o usuário")
+  );
+  fireEvent.change(usuario, { target: { value: "usuarioteste" } });
+
+  const senha = await waitFor(() =>
+    screen.findByPlaceholderText("Informe a senha")
+  );
+  fireEvent.change(senha, { target: { value: "12345678" } });
+
+  const login = await waitFor(() => screen.findByRole("button", /Login/i));
+  fireEvent.click(login);
 });

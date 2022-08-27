@@ -6,21 +6,6 @@ import { renderWithProviders } from "../util/test-utils";
 import ListarHorarioProfissional from "./ListarHorarioProfissional";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 
-//Polyfill para o replaceAll
-if (!String.prototype.replaceAll) {
-  String.prototype.replaceAll = function (str, newStr) {
-    // If a regex pattern
-    if (
-      Object.prototype.toString.call(str).toLowerCase() === "[object regexp]"
-    ) {
-      return this.replace(str, newStr);
-    }
-
-    // If a string
-    return this.replace(new RegExp(str, "g"), newStr);
-  };
-}
-
 let estadoConfiguracao = 200;
 let mockListaConfiguracao = [];
 
@@ -53,8 +38,7 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(<ListarHorarioProfissional />);
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(renderWithProviders(<ListarHorarioProfissional />)).toMatchSnapshot();
 });
 
 test("Listar horários no período - Sucesso", async () => {

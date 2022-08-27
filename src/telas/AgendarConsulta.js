@@ -201,7 +201,7 @@ function AgendarConsulta() {
       </Row>
       <br></br>
       {isGradeDataCarregada ? (
-        <Row>
+        <Row data-testid="blocoData">
           <Col>
             <DatePicker
               input={false}
@@ -225,7 +225,7 @@ function AgendarConsulta() {
             <Col></Col>
             <Col>
               <ToolkitProvider
-                keyField="idHorario"
+                keyField="horario"
                 data={listaHorarioDisponivel}
                 columns={colunasHorario}
               >
@@ -233,7 +233,7 @@ function AgendarConsulta() {
                   <div>
                     <BootstrapTable
                       classes="react-bootstrap-table"
-                      keyField="idHorario"
+                      keyField="horario"
                       striped={true}
                       hover={true}
                       {...props.baseProps}

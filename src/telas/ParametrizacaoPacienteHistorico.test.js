@@ -22,8 +22,9 @@ afterAll(() => server.close());
 beforeEach(() => {});
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(<ParametrizacaoPacienteHistorico />);
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(
+    renderWithProviders(<ParametrizacaoPacienteHistorico />)
+  ).toMatchSnapshot();
 });
 
 test("Botão voltar", async () => {

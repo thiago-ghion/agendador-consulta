@@ -9,7 +9,8 @@ import consultaReducer from "../features/consultaSlice";
 import pacienteReducer from "../features/pacienteSlice";
 import horarioReducer from "../features/horarioSlice";
 import usuarioReducer from "../features/usuarioSlice";
-
+import loadingReducer from "../features/loadingSlice";
+import mensagemgReducer from "../features/mensagemSlice";
 
 export function renderWithProviders(
   ui,
@@ -23,7 +24,9 @@ export function renderWithProviders(
         profissional: profissionalReducer,
         paciente: pacienteReducer,
         horario: horarioReducer,
-        usuario: usuarioReducer
+        usuario: usuarioReducer,
+        loading: loadingReducer,
+        mensagem: mensagemgReducer,
       },
       preloadedState,
     }),

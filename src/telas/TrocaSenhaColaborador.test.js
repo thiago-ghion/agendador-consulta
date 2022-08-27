@@ -36,12 +36,13 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(
-    <Router>
-      <TrocaSenhaColaborador useNavigate={() => {}} />
-    </Router>
-  );
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(
+    renderWithProviders(
+      <Router>
+        <TrocaSenhaColaborador useNavigate={() => {}} />
+      </Router>
+    )
+  ).toMatchSnapshot();
 });
 
 test("Falha no preenchimento", async () => {

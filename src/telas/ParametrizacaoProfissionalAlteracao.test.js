@@ -6,21 +6,6 @@ import { renderWithProviders } from "../util/test-utils";
 import ParametrizacaoProfissionalAlteracao from "./ParametrizacaoProfissionalAlteracao";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 
-//Polyfill para o replaceAll
-if (!String.prototype.replaceAll) {
-  String.prototype.replaceAll = function (str, newStr) {
-    // If a regex pattern
-    if (
-      Object.prototype.toString.call(str).toLowerCase() === "[object regexp]"
-    ) {
-      return this.replace(str, newStr);
-    }
-
-    // If a string
-    return this.replace(new RegExp(str, "g"), newStr);
-  };
-}
-
 let estadoAlteracao = 200;
 let mockAlteracao = {};
 let estadoListaConfiguracao = 200;
@@ -63,8 +48,7 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(<ParametrizacaoProfissionalAlteracao />);
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(<ParametrizacaoProfissionalAlteracao />).toMatchSnapshot();
 });
 
 test("Somente troca nome do profissional - sucesso", async () => {

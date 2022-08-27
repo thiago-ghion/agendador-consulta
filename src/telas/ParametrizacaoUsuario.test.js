@@ -54,12 +54,11 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(<ParametrizacaoUsuario />);
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(<ParametrizacaoUsuario />).toMatchSnapshot();
 });
 
 test("Lista Vazia", async () => {
-  const tela = renderWithProviders(<ParametrizacaoUsuario />);
+  renderWithProviders(<ParametrizacaoUsuario />);
 
   let tabela;
   screen.queryAllByRole("table").map((item) => {
@@ -87,7 +86,7 @@ test("Lista com conteúdo", async () => {
     },
   ];
 
-  const tela = renderWithProviders(<ParametrizacaoUsuario />);
+  renderWithProviders(<ParametrizacaoUsuario />);
 
   await waitFor(() => {
     let tabela;
@@ -509,8 +508,7 @@ test("Alterar usuário - resetar senha - cancelar o processo", async () => {
     },
   ];
 
-  estadoAlteracao = 400;
-  mockRespostaAlteracao = { campo: 3 };
+  estadoReset = 400;
 
   renderWithProviders(<ParametrizacaoUsuario />);
 
@@ -655,6 +653,66 @@ test("Alterar usuário - resetar senha - salvar o processo - senha divergente", 
     });
     fireEvent.change(screen.getByPlaceholderText("Repita a senha"), {
       target: { value: "87654321" },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: /Salvar/i }));
+  });
+});
+
+test("Alterar usuário - resetar senha - falha", async () => {
+  mockListaUsuario = [
+    {
+      idUsuario: 1,
+      nomeUsuario: "catarina349",
+      indicadorAdministrador: "S",
+      indicadorAtivo: "S",
+    },
+    {
+      idUsuario: 2,
+      nomeUsuario: "luiz374",
+      indicadorAdministrador: "N",
+      indicadorAtivo: "S",
+    },
+    {
+      idUsuario: 3,
+      nomeUsuario: "luiz375",
+      indicadorAdministrador: "S",
+      indicadorAtivo: "N",
+    },
+    {
+      idUsuario: 4,
+      nomeUsuario: "luiz376",
+      indicadorAdministrador: "N",
+      indicadorAtivo: "N",
+    },
+  ];
+
+  estadoReset = 400;
+  mockRespostaAlteracao = { campo: 3 };
+
+  renderWithProviders(<ParametrizacaoUsuario />);
+
+  await waitFor(() => {
+    fireEvent.click(screen.getByRole("button", { name: /catarina349/i }));
+  });
+
+  await waitFor(() => {
+    fireEvent.change(
+      screen.getByPlaceholderText("Informe o nome do colaborador"),
+      { target: { value: "maria da silva" } }
+    );
+    fireEvent.click(screen.getAllByRole("checkbox")[0]);
+    fireEvent.click(screen.getAllByRole("checkbox")[1]);
+
+    fireEvent.click(screen.getByRole("button", { name: /Resetar Senha/i }));
+  });
+
+  await waitFor(() => {
+    fireEvent.change(screen.getByPlaceholderText("Informe a senha inicial"), {
+      target: { value: "12345678" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("Repita a senha"), {
+      target: { value: "12345678" },
     });
 
     fireEvent.click(screen.getByRole("button", { name: /Salvar/i }));

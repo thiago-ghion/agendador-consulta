@@ -33,10 +33,10 @@ beforeEach(() => {
 });
 
 test("Lista Vazia", async () => {
-  const tela = renderWithProviders(<ListarRegistroAcesso />);
+  renderWithProviders(<ListarRegistroAcesso />);
 
-  const dataInicio = tela.getByLabelText("dataInicio");
-  const dataFim = tela.getByLabelText("dataFim");
+  const dataInicio = screen.getByLabelText("dataInicio");
+  const dataFim = screen.getByLabelText("dataFim");
 
   fireEvent.change(dataInicio, {
     target: { value: "02.05.2020" },
@@ -71,10 +71,10 @@ test("Lista com conteúdo", async () => {
     },
   ];
 
-  const tela = renderWithProviders(<ListarRegistroAcesso />);
+  renderWithProviders(<ListarRegistroAcesso />);
 
-  const dataInicio = tela.getByLabelText("dataInicio");
-  const dataFim = tela.getByLabelText("dataFim");
+  const dataInicio = screen.getByLabelText("dataInicio");
+  const dataFim = screen.getByLabelText("dataFim");
 
   fireEvent.change(dataInicio, {
     target: { value: "02.05.2020" },

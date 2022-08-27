@@ -1,3 +1,249 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renderização componente 1`] = `undefined`;
+exports[`Renderização componente 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <br />
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <label
+              class="form-label"
+            >
+              Paciente
+            </label>
+            <div
+              class="rbt"
+              style="outline: none; position: relative;"
+              tabindex="-1"
+            >
+              <div
+                style="display: flex; flex: 1; height: 100%; position: relative;"
+              >
+                <input
+                  aria-autocomplete="both"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  autocomplete="off"
+                  class="rbt-input-main form-control rbt-input"
+                  placeholder="Escolha o paciente..."
+                  role="combobox"
+                  type="text"
+                  value=""
+                />
+                <input
+                  aria-hidden="true"
+                  class="rbt-input-hint"
+                  readonly=""
+                  style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 2px 2px 2px 2px; line-height: normal; padding: 1px 1px 1px 1px;"
+                  tabindex="-1"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <label
+              class="form-label"
+            >
+              Profissional
+            </label>
+            <div
+              class="rbt"
+              style="outline: none; position: relative;"
+              tabindex="-1"
+            >
+              <div
+                style="display: flex; flex: 1; height: 100%; position: relative;"
+              >
+                <input
+                  aria-autocomplete="both"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  autocomplete="off"
+                  class="rbt-input-main form-control rbt-input"
+                  placeholder="Escolha o profissional..."
+                  role="combobox"
+                  type="text"
+                  value=""
+                />
+                <input
+                  aria-hidden="true"
+                  class="rbt-input-hint"
+                  readonly=""
+                  style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 2px 2px 2px 2px; line-height: normal; padding: 1px 1px 1px 1px;"
+                  tabindex="-1"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <br />
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <label
+            class="form-label"
+          >
+            Paciente
+          </label>
+          <div
+            class="rbt"
+            style="outline: none; position: relative;"
+            tabindex="-1"
+          >
+            <div
+              style="display: flex; flex: 1; height: 100%; position: relative;"
+            >
+              <input
+                aria-autocomplete="both"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="rbt-input-main form-control rbt-input"
+                placeholder="Escolha o paciente..."
+                role="combobox"
+                type="text"
+                value=""
+              />
+              <input
+                aria-hidden="true"
+                class="rbt-input-hint"
+                readonly=""
+                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 2px 2px 2px 2px; line-height: normal; padding: 1px 1px 1px 1px;"
+                tabindex="-1"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <label
+            class="form-label"
+          >
+            Profissional
+          </label>
+          <div
+            class="rbt"
+            style="outline: none; position: relative;"
+            tabindex="-1"
+          >
+            <div
+              style="display: flex; flex: 1; height: 100%; position: relative;"
+            >
+              <input
+                aria-autocomplete="both"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="rbt-input-main form-control rbt-input"
+                placeholder="Escolha o profissional..."
+                role="combobox"
+                type="text"
+                value=""
+              />
+              <input
+                aria-hidden="true"
+                class="rbt-input-hint"
+                readonly=""
+                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 2px 2px 2px 2px; line-height: normal; padding: 1px 1px 1px 1px;"
+                tabindex="-1"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "store": Object {
+    "@@observable": [Function],
+    "dispatch": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+  "unmount": [Function],
+}
+`;

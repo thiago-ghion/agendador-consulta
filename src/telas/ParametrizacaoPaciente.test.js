@@ -33,8 +33,7 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(<ParametrizacaoPaciente />);
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(renderWithProviders(<ParametrizacaoPaciente />)).toMatchSnapshot();
 });
 
 test("Modo inclusão de paciente", async () => {

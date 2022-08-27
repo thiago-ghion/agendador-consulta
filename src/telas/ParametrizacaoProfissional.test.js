@@ -75,8 +75,9 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  const tela = renderWithProviders(<ParametrizacaoProfissional />);
-  expect(tela.firstChild).toMatchSnapshot();
+  expect(
+    renderWithProviders(<ParametrizacaoProfissional />)
+  ).toMatchSnapshot();
 });
 
 test("Entrou em modo de inclusão", async () => {

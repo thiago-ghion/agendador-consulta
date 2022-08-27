@@ -8,10 +8,13 @@ function Mensagem() {
   return (
     <div>
       {mensagem == null ? (
-        <div></div>
+        <div data-testid="caixavazia"></div>
       ) : (
         <div>
-          <Alert variant={tipoMensagem === 1 ? "danger" : "success"}>
+          <Alert
+            data-testid="caixamensagem"
+            variant={tipoMensagem === 1 ? "danger" : "success"}
+          >
             {mensagem}
           </Alert>
         </div>
