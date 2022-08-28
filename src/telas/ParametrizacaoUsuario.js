@@ -100,6 +100,7 @@ function ParametrizacaoUsuario() {
       headerStyle: () => {
         return { width: "80px" };
       },
+      csvText: "Código",
     },
     {
       dataField: "nomeUsuario",

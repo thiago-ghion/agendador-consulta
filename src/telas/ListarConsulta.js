@@ -140,6 +140,7 @@ function ListarConsulta() {
       headerStyle: () => {
         return { width: "110px" };
       },
+      csvExport: false,
     },
   ];
 

@@ -84,6 +84,7 @@ function ParametrizacaoHorario() {
       headerStyle: () => {
         return { width: "80px" };
       },
+      csvText: "Código",
     },
     {
       dataField: "horario",
@@ -97,6 +98,7 @@ function ParametrizacaoHorario() {
       style: { cursor: "pointer" },
       sort: true,
       formatter: listaFormatter,
+      csvText: "Ativo",
     },
   ];
 
@@ -167,7 +169,7 @@ function ParametrizacaoHorario() {
               columns={colunas}
               search
               exportCSV={{
-                fileName: "usuarios.csv",
+                fileName: "horario.csv",
               }}
             >
               {(props) => (
@@ -186,6 +188,7 @@ function ParametrizacaoHorario() {
                     defaultSorted={defaultSorted}
                     pagination={pagination}
                     {...props.baseProps}
+                    sort={ { dataField: 'horario', order: 'asc' } }
                   />
                   <div className={["d-flex", "justify-content-end"].join(" ")}>
                     <BotaoExportar {...props.csvProps}></BotaoExportar>

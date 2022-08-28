@@ -129,6 +129,7 @@ function AgendarConsulta() {
       dispatch(limparListaDataDisponivel());
       dispatch(limparListaHorarioDisponivel());
       setIsGradeDataCarregada(false);
+      setIsGradeHorarioCarregada(false);
       setComboPaciente([]);
       setComboProfissional([]);
     }

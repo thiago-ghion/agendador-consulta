@@ -125,6 +125,7 @@ function ParametrizacaoProfissional() {
       headerStyle: () => {
         return { width: "80px" };
       },
+      csvText: "Código",
     },
     {
       dataField: "nomeProfissional",
@@ -139,6 +140,7 @@ function ParametrizacaoProfissional() {
       sort: false,
       style: { cursor: "pointer" },
       formatter: acaoFormatter,
+      csvText: "Ativo",
     },
   ];
 

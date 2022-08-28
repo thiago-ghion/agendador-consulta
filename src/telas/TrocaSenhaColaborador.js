@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,15 @@ function TrocaSenhaColaborador() {
   let [senhaAnterior, setSenhaAnterior] = useState("");
   let [senhaNova, setSenhaNova] = useState("");
   let [senhaRepetida, setSenhaRepetida] = useState("");
+
+  const isTelaCarregada = useRef(false);
+
+  useEffect(() => {
+    if (isTelaCarregada.current === false) {
+      dispatch(setErro());
+    }
+    isTelaCarregada.current = true;
+  });
 
   const isFormularioValido = () => {
     dispatch(setErro(null));

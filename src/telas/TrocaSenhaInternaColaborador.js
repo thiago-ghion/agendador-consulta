@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
@@ -35,6 +35,15 @@ function TrocaSenhaInternaColaborador() {
   let [senhaAnterior, setSenhaAnterior] = useState("");
   let [senhaNova, setSenhaNova] = useState("");
   let [senhaRepetida, setSenhaRepetida] = useState("");
+
+  const isTelaCarregada = useRef(false);
+
+  useEffect(() => {
+    if (isTelaCarregada.current === false) {
+      dispatch(setErro());
+    }
+    isTelaCarregada.current = true;
+  });
 
   const isFormularioValido = () => {
     dispatch(setErro(null));

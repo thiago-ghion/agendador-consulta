@@ -8,6 +8,7 @@ import {
   limparListaAcesso,
   listarRegistroAcessoAction,
 } from "../features/loginSlice";
+import { setErro } from "../features/mensagemSlice";
 
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, {
@@ -29,6 +30,7 @@ function ListarRegistroAcesso() {
 
   useEffect(() => {
     if (isTelaCarregada.current === false) {
+      dispatch(setErro());
       dispatch(limparListaAcesso());
     }
     isTelaCarregada.current = true;

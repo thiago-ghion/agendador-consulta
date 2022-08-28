@@ -65,13 +65,14 @@ function ParametrizacaoPaciente() {
       headerStyle: () => {
         return { width: "80px" };
       },
+      csvText: "Código",
     },
     {
       dataField: "nomePaciente",
       text: "Paciente",
       sort: true,
       style: { cursor: "pointer" },
-      formatter: nomeFormatter,
+      formatter: nomeFormatter
     },
     {
       dataField: "indicadorAtivo",
@@ -79,6 +80,7 @@ function ParametrizacaoPaciente() {
       sort: false,
       style: { cursor: "pointer" },
       formatter: acaoFormatter,
+      csvExport: false,
     },
   ];
 
