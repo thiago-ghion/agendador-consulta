@@ -60,6 +60,7 @@ Object {
                 >
                   <input
                     class="form-control"
+                    maxlength="15"
                     placeholder="Informe o usuário"
                     type="text"
                     value=""
@@ -85,6 +86,7 @@ Object {
                 >
                   <input
                     class="form-control"
+                    maxlength="8"
                     placeholder="Informe a senha"
                     type="password"
                     value=""
@@ -109,7 +111,7 @@ Object {
                   class="link-primary"
                   href="/trocaSenhaColaborador"
                 >
-                  Esqueci a senha
+                  Trocar a senha
                 </a>
               </div>
             </div>
@@ -196,6 +198,7 @@ Object {
               >
                 <input
                   class="form-control"
+                  maxlength="15"
                   placeholder="Informe o usuário"
                   type="text"
                   value=""
@@ -221,6 +224,7 @@ Object {
               >
                 <input
                   class="form-control"
+                  maxlength="8"
                   placeholder="Informe a senha"
                   type="password"
                   value=""
@@ -245,7 +249,7 @@ Object {
                 class="link-primary"
                 href="/trocaSenhaColaborador"
               >
-                Esqueci a senha
+                Trocar a senha
               </a>
             </div>
           </div>

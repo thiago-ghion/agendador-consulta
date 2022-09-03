@@ -84,6 +84,11 @@ function TrocaSenhaColaborador() {
     }
   };
 
+  const cancelar = async () => {
+    dispatch(setErro());
+    navigate("/");
+  };
+
   return (
     <Container>
       <Row>
@@ -111,6 +116,7 @@ function TrocaSenhaColaborador() {
                 type="text"
                 placeholder="Informe o usuário"
                 value={usuario}
+                maxLength="15"
                 onChange={(event) => {
                   setUsuario(event.target.value);
                 }}
@@ -128,6 +134,7 @@ function TrocaSenhaColaborador() {
               <Form.Control
                 type="password"
                 placeholder="Informe a senha anterior"
+                maxLength="8"
                 value={senhaAnterior}
                 onChange={(event) => {
                   setSenhaAnterior(event.target.value);
@@ -147,6 +154,7 @@ function TrocaSenhaColaborador() {
                 type="password"
                 placeholder="Informe a senha nova"
                 value={senhaNova}
+                maxLength="8"
                 onChange={(event) => {
                   setSenhaNova(event.target.value);
                 }}
@@ -165,6 +173,7 @@ function TrocaSenhaColaborador() {
                 type="password"
                 placeholder="Repetir a senha nova"
                 value={senhaRepetida}
+                maxLength="8"
                 onChange={(event) => {
                   setSenhaRepetida(event.target.value);
                 }}
@@ -187,6 +196,15 @@ function TrocaSenhaColaborador() {
                   }}
                 >
                   Trocar
+                </Button>
+                <Button
+                  variant="danger"
+                  size="lg"
+                  onClick={() => {
+                    cancelar();
+                  }}
+                >
+                  Cancelar
                 </Button>
               </div>
             </Form.Group>

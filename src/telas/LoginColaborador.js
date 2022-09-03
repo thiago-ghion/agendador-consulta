@@ -84,6 +84,7 @@ function LoginColaborador() {
                   type="text"
                   placeholder="Informe o usuário"
                   value={usuario}
+                  maxLength="15"
                   autoFocus
                   onChange={(event) => {
                     setUsuario(event.target.value);
@@ -104,6 +105,7 @@ function LoginColaborador() {
                   type="password"
                   placeholder="Informe a senha"
                   value={senha}
+                  maxLength="8"
                   onChange={(event) => {
                     setSenha(event.target.value);
                   }}
@@ -120,7 +122,7 @@ function LoginColaborador() {
           <Col md={6} className="align-self-end">
             <Form.Group className="mb-3" controlId="formBotaoLogin">
               <a href="/trocaSenhaColaborador" className="link-primary">
-                Esqueci a senha
+                Trocar a senha
               </a>
             </Form.Group>
           </Col>

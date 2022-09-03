@@ -58,6 +58,7 @@ Object {
                 <input
                   class="form-control"
                   id="formUsuario"
+                  maxlength="15"
                   placeholder="Informe o usuário"
                   type="text"
                   value=""
@@ -77,6 +78,7 @@ Object {
                 <input
                   class="form-control"
                   id="formUsuario"
+                  maxlength="8"
                   placeholder="Informe a senha anterior"
                   type="password"
                   value=""
@@ -96,6 +98,7 @@ Object {
                 <input
                   class="form-control"
                   id="formUsuario"
+                  maxlength="8"
                   placeholder="Informe a senha nova"
                   type="password"
                   value=""
@@ -115,6 +118,7 @@ Object {
                 <input
                   class="form-control"
                   id="formUsuario"
+                  maxlength="8"
                   placeholder="Repetir a senha nova"
                   type="password"
                   value=""
@@ -139,6 +143,12 @@ Object {
                     type="button"
                   >
                     Trocar
+                  </button>
+                  <button
+                    class="btn btn-danger btn-lg"
+                    type="button"
+                  >
+                    Cancelar
                   </button>
                 </div>
               </div>
@@ -202,6 +212,7 @@ Object {
               <input
                 class="form-control"
                 id="formUsuario"
+                maxlength="15"
                 placeholder="Informe o usuário"
                 type="text"
                 value=""
@@ -221,6 +232,7 @@ Object {
               <input
                 class="form-control"
                 id="formUsuario"
+                maxlength="8"
                 placeholder="Informe a senha anterior"
                 type="password"
                 value=""
@@ -240,6 +252,7 @@ Object {
               <input
                 class="form-control"
                 id="formUsuario"
+                maxlength="8"
                 placeholder="Informe a senha nova"
                 type="password"
                 value=""
@@ -259,6 +272,7 @@ Object {
               <input
                 class="form-control"
                 id="formUsuario"
+                maxlength="8"
                 placeholder="Repetir a senha nova"
                 type="password"
                 value=""
@@ -283,6 +297,12 @@ Object {
                   type="button"
                 >
                   Trocar
+                </button>
+                <button
+                  class="btn btn-danger btn-lg"
+                  type="button"
+                >
+                  Cancelar
                 </button>
               </div>
             </div>

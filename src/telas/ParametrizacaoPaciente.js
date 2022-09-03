@@ -47,6 +47,7 @@ function ParametrizacaoPaciente() {
     return (
       <Button
         variant="primary"
+        disabled
         onClick={() => {
           setTelaAtiva(4);
         }}
