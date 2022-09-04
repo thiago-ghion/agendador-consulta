@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
+import { isMobile } from "react-device-detect";
 
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider from "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min";
@@ -124,6 +125,7 @@ function AgendarConsulta() {
       })
     );
     if (resposta.error === undefined) {
+      window.scrollTo(0, 0);
       dispatch(setSucesso("Consulta agenda com sucesso"));
       dispatch(limparListaPaciente());
       dispatch(limparListaDataDisponivel());
@@ -223,7 +225,7 @@ function AgendarConsulta() {
         <div>
           <br></br>
           <Row>
-            <Col></Col>
+            {isMobile ? <></> : <Col></Col>}
             <Col>
               <ToolkitProvider
                 keyField="horario"
@@ -243,7 +245,7 @@ function AgendarConsulta() {
                 )}
               </ToolkitProvider>
             </Col>
-            <Col></Col>
+            {isMobile ? <></> : <Col></Col>}
           </Row>
         </div>
       ) : (

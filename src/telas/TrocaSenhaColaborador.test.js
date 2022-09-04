@@ -53,31 +53,31 @@ test("Falha no preenchimento", async () => {
   );
 
   //Nada preenchido
-  fireEvent.click(screen.getByRole("button"), { name: /Trocar/i });
+  fireEvent.click(screen.getByRole("button", { name: /Trocar/i }));
 
   //Usuário
   fireEvent.change(screen.getByPlaceholderText("Informe o usuário"), {
     target: { value: "teste" },
   });
-  fireEvent.click(screen.getByRole("button"), { name: /Trocar/i });
+  fireEvent.click(screen.getByRole("button", { name: /Trocar/i }));
 
   //Usuário, Senha inicial
   fireEvent.change(screen.getByPlaceholderText("Informe a senha anterior"), {
     target: { value: "12345678" },
   });
-  fireEvent.click(screen.getByRole("button"), { name: /Trocar/i });
+  fireEvent.click(screen.getByRole("button", { name: /Trocar/i }));
 
   //Usuário, Senha inicial, senha nova
   fireEvent.change(screen.getByPlaceholderText("Informe a senha nova"), {
     target: { value: "87654321" },
   });
-  fireEvent.click(screen.getByRole("button"), { name: /Trocar/i });
+  fireEvent.click(screen.getByRole("button", { name: /Trocar/i }));
 
   //Usuário, Senha inicial, senha nova, senha repetida
   fireEvent.change(screen.getByPlaceholderText("Repetir a senha nova"), {
     target: { value: "abcdefgh" },
   });
-  fireEvent.click(screen.getByRole("button"), { name: /Trocar/i });
+  fireEvent.click(screen.getByRole("button", { name: /Trocar/i }));
 });
 
 test("Sucesso na alteração", async () => {
@@ -103,7 +103,7 @@ test("Sucesso na alteração", async () => {
     target: { value: "87654321" },
   });
 
-  fireEvent.click(screen.getByRole("button"), { name: /Trocar/i });
+  fireEvent.click(screen.getByRole("button", { name: /Trocar/i }));
 });
 
 test("Falha na alteração", async () => {
@@ -130,5 +130,5 @@ test("Falha na alteração", async () => {
     target: { value: "87654321" },
   });
 
-  fireEvent.click(screen.getByRole("button"), { name: /Trocar/i });
+  fireEvent.click(screen.getByRole("button", { name: /Trocar/i }));
 });

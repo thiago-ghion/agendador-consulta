@@ -11,6 +11,7 @@ import horarioReducer from "../features/horarioSlice";
 import usuarioReducer from "../features/usuarioSlice";
 import loadingReducer from "../features/loadingSlice";
 import mensagemgReducer from "../features/mensagemSlice";
+import menuSlice from "../features/menuSlice";
 
 export function renderWithProviders(
   ui,
@@ -27,6 +28,7 @@ export function renderWithProviders(
         usuario: usuarioReducer,
         loading: loadingReducer,
         mensagem: mensagemgReducer,
+        menu: menuSlice,
       },
       preloadedState,
     }),

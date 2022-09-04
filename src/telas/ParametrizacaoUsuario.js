@@ -407,6 +407,7 @@ function ParametrizacaoUsuario() {
           <Button
             variant="warning"
             onClick={() => {
+              setSenha("");
               setTelaApresentacao(4);
             }}
           >
