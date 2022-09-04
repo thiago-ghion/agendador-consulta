@@ -410,6 +410,7 @@ function ParametrizacaoUsuario() {
               setSenha("");
               setTelaApresentacao(4);
             }}
+            disabled={objetoOriginal.idUsuario === 1}
           >
             Resetar Senha
           </Button>
@@ -433,6 +434,7 @@ function ParametrizacaoUsuario() {
                   nomeInput = input;
                 }
               }}
+              disabled={objetoOriginal.idUsuario === 1}
             />
           </Form.Group>
         </Col>
