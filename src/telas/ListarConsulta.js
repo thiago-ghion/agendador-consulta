@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import DatePicker from "../componentes/DatePicker";
 import Form from "react-bootstrap/Form";
 import { Typeahead } from "react-bootstrap-typeahead";
+import { isMobile } from "react-device-detect";
 
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, {
@@ -81,6 +82,7 @@ function ListarConsulta() {
     );
 
     if (resposta.error === undefined) {
+      window.scrollTo(0, 0);
       dispatch(
         removerListaConsultaProfissional({
           id: row.id,
@@ -91,58 +93,94 @@ function ListarConsulta() {
 
   const acoesFormatter = (cell, row, rowIndex, formatExtraData) => {
     return row.indicadorPermissaoCancelar === "S" ? (
-      <center>
-        <Button
-          variant="danger"
-          onClick={() => {
-            cancelar(row);
-          }}
-        >
-          Cancelar
-        </Button>
-      </center>
+      isMobile ? (
+        <>
+          {row.dataConsulta} {row.horario}
+          <Button
+            variant="danger"
+            onClick={() => {
+              cancelar(row);
+            }}
+          >
+            Cancelar
+          </Button>
+        </>
+      ) : (
+        <center>
+          <Button
+            variant="danger"
+            onClick={() => {
+              cancelar(row);
+            }}
+          >
+            Cancelar
+          </Button>
+        </center>
+      )
     ) : (
       <></>
     );
   };
 
-  const colunasAgendamento = [
-    {
-      dataField: "nomePaciente",
-      text: "Paciente",
-      style: { cursor: "pointer" },
-      sort: true,
-    },
-    {
-      dataField: "dataConsulta",
-      text: "Data",
-      sort: true,
-      style: { cursor: "pointer" },
-      headerStyle: () => {
-        return { width: "100px" };
+  let colunasAgendamento = [];
+
+  if (isMobile) {
+    colunasAgendamento = [
+      {
+        dataField: "nomePaciente",
+        text: "Paciente",
+        style: { cursor: "pointer" },
+        sort: true,
       },
-    },
-    {
-      dataField: "horario",
-      text: "Horário",
-      sort: true,
-      style: { cursor: "pointer" },
-      headerStyle: () => {
-        return { width: "100px" };
+      {
+        dataField: "id",
+        text: "",
+        sort: false,
+        style: { cursor: "pointer" },
+        formatter: acoesFormatter,
+        isDummyField: true,
+        csvExport: false,
       },
-    },
-    {
-      dataField: "id",
-      text: "Ações",
-      sort: true,
-      style: { cursor: "pointer" },
-      formatter: acoesFormatter,
-      headerStyle: () => {
-        return { width: "110px" };
+    ];
+  } else {
+    colunasAgendamento = [
+      {
+        dataField: "nomePaciente",
+        text: "Paciente",
+        style: { cursor: "pointer" },
+        sort: true,
       },
-      csvExport: false,
-    },
-  ];
+      {
+        dataField: "dataConsulta",
+        text: "Data",
+        sort: true,
+        style: { cursor: "pointer" },
+        headerStyle: () => {
+          return { width: "100px" };
+        },
+      },
+      {
+        dataField: "horario",
+        text: "Horário",
+        sort: true,
+        style: { cursor: "pointer" },
+        headerStyle: () => {
+          return { width: "100px" };
+        },
+      },
+      {
+        dataField: "id",
+        text: "Ações",
+        sort: true,
+        style: { cursor: "pointer" },
+        formatter: acoesFormatter,
+        headerStyle: () => {
+          return { width: "110px" };
+        },
+        csvExport: false,
+      },
+    ];
+  }
 
   return (
     <div>
@@ -162,29 +200,61 @@ function ListarConsulta() {
         </Col>
       </Row>
       <br></br>
-      <Row>
-        <Col>
-          <DatePicker
-            initialValue={null}
-            value={dataInicio}
-            onChange={(evento) => {
-              setDataInicio(evento.format("DD/MM/YYYY"));
-            }}
-          ></DatePicker>
-        </Col>
-        <Col>
-          <DatePicker
-            initialValue={null}
-            value={dataFim}
-            onChange={(evento) => {
-              setDataFim(evento.format("DD/MM/YYYY"));
-            }}
-          ></DatePicker>
-        </Col>
-        <Col>
-          <Button onClick={pesquisar}>Pesquisar</Button>
-        </Col>
-      </Row>
+      {isMobile ? (
+        <>
+          <Row>
+            <Col>
+              <DatePicker
+                initialValue={null}
+                value={dataInicio}
+                onChange={(evento) => {
+                  setDataInicio(evento.format("DD/MM/YYYY"));
+                }}
+              ></DatePicker>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <DatePicker
+                initialValue={null}
+                value={dataFim}
+                onChange={(evento) => {
+                  setDataFim(evento.format("DD/MM/YYYY"));
+                }}
+              ></DatePicker>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button onClick={pesquisar}>Pesquisar</Button>
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <Row>
+          <Col>
+            <DatePicker
+              initialValue={null}
+              value={dataInicio}
+              onChange={(evento) => {
+                setDataInicio(evento.format("DD/MM/YYYY"));
+              }}
+            ></DatePicker>
+          </Col>
+          <Col>
+            <DatePicker
+              initialValue={null}
+              value={dataFim}
+              onChange={(evento) => {
+                setDataFim(evento.format("DD/MM/YYYY"));
+              }}
+            ></DatePicker>
+          </Col>
+          <Col>
+            <Button onClick={pesquisar}>Pesquisar</Button>
+          </Col>
+        </Row>
+      )}
       <br></br>
       <Row>
         <Col>

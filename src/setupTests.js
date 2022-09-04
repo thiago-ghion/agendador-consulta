@@ -19,4 +19,6 @@ if (!String.prototype.replaceAll) {
   };
 }
 
+window.scrollTo = () => {};
+
 process.on("unhandledRejection", (reason) => {});

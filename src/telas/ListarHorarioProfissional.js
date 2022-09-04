@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider from "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min";
+import { isMobile } from "react-device-detect";
 
 import DatePicker from "../componentes/DatePicker";
 import pagination from "../componentes/Pagination";
@@ -91,31 +92,65 @@ function ListarHorarioProfissional(props) {
           </Col>
         </Row>
         <br></br>
-        <Row>
-          <Col>
-            <DatePicker
-              initialValue={null}
-              onChange={(evento) => {
-                setDataInicio(evento);
-                setListaConfiguracao([]);
-              }}
-              inputProps={{ placeholder: "Data início pesquisa" }}
-            ></DatePicker>
-          </Col>
-          <Col>
-            <DatePicker
-              initialValue={null}
-              onChange={(evento) => {
-                setDataFim(evento);
-                setListaConfiguracao([]);
-              }}
-              inputProps={{ placeholder: "Data fim pesquisa" }}
-            ></DatePicker>
-          </Col>
-          <Col>
-            <Button onClick={pesquisar}>Pesquisar</Button>
-          </Col>
-        </Row>
+        {isMobile ? (
+          <>
+            <Row>
+              <Col>
+                <DatePicker
+                  initialValue={null}
+                  onChange={(evento) => {
+                    setDataInicio(evento);
+                    setListaConfiguracao([]);
+                  }}
+                  inputProps={{ placeholder: "Data início pesquisa" }}
+                ></DatePicker>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <DatePicker
+                  initialValue={null}
+                  onChange={(evento) => {
+                    setDataFim(evento);
+                    setListaConfiguracao([]);
+                  }}
+                  inputProps={{ placeholder: "Data fim pesquisa" }}
+                ></DatePicker>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button onClick={pesquisar}>Pesquisar</Button>
+              </Col>
+            </Row>
+          </>
+        ) : (
+          <Row>
+            <Col>
+              <DatePicker
+                initialValue={null}
+                onChange={(evento) => {
+                  setDataInicio(evento);
+                  setListaConfiguracao([]);
+                }}
+                inputProps={{ placeholder: "Data início pesquisa" }}
+              ></DatePicker>
+            </Col>
+            <Col>
+              <DatePicker
+                initialValue={null}
+                onChange={(evento) => {
+                  setDataFim(evento);
+                  setListaConfiguracao([]);
+                }}
+                inputProps={{ placeholder: "Data fim pesquisa" }}
+              ></DatePicker>
+            </Col>
+            <Col>
+              <Button onClick={pesquisar}>Pesquisar</Button>
+            </Col>
+          </Row>
+        )}
         <Row>
           {listaConfiguracao.length === 0 ? (
             <></>
@@ -143,13 +178,17 @@ function ListarHorarioProfissional(props) {
           )}
         </Row>
         <br></br>
-        <Row className="justify-content-md-end">
-          <Col md={1}>
-            <Button variant="primary" onClick={() => props.setTelaAtiva(1)}>
-              Voltar
-            </Button>
-          </Col>
-        </Row>
+        {isMobile ? (
+          <></>
+        ) : (
+          <Row className="justify-content-md-end">
+            <Col md={1}>
+              <Button variant="primary" onClick={() => props.setTelaAtiva(1)}>
+                Voltar
+              </Button>
+            </Col>
+          </Row>
+        )}
       </div>
     );
   };

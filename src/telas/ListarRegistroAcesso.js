@@ -9,6 +9,7 @@ import {
   listarRegistroAcessoAction,
 } from "../features/loginSlice";
 import { setErro } from "../features/mensagemSlice";
+import { isMobile } from "react-device-detect";
 
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, {
@@ -66,32 +67,69 @@ function ListarRegistroAcesso() {
   return (
     <div>
       <br></br>
-      <Row>
-        <Col>
-          <DatePicker
-            initialValue={null}
-            value={dataInicio}
-            onChange={(evento) => {
-              setDataInicio(evento.format("DD/MM/YYYY"));
-            }}
-            test={{ "aria-label": "dataInicio" }}
-          ></DatePicker>
-        </Col>
-        <Col>
-          <DatePicker
-            aria-label="dataFim"
-            initialValue={null}
-            value={dataFim}
-            onChange={(evento) => {
-              setDataFim(evento.format("DD/MM/YYYY"));
-            }}
-            test={{ "aria-label": "dataFim" }}
-          ></DatePicker>
-        </Col>
-        <Col>
-          <Button onClick={pesquisar}>Pesquisar</Button>
-        </Col>
-      </Row>
+      {isMobile ? (
+        <>
+          {" "}
+          <Row>
+            <Col>
+              <DatePicker
+                initialValue={null}
+                value={dataInicio}
+                onChange={(evento) => {
+                  setDataInicio(evento.format("DD/MM/YYYY"));
+                }}
+                test={{ "aria-label": "dataInicio" }}
+              ></DatePicker>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <DatePicker
+                aria-label="dataFim"
+                initialValue={null}
+                value={dataFim}
+                onChange={(evento) => {
+                  setDataFim(evento.format("DD/MM/YYYY"));
+                }}
+                test={{ "aria-label": "dataFim" }}
+              ></DatePicker>
+            </Col>
+          </Row>
+          <Row>
+            {" "}
+            <Col>
+              <Button onClick={pesquisar}>Pesquisar</Button>
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <Row>
+          <Col>
+            <DatePicker
+              initialValue={null}
+              value={dataInicio}
+              onChange={(evento) => {
+                setDataInicio(evento.format("DD/MM/YYYY"));
+              }}
+              test={{ "aria-label": "dataInicio" }}
+            ></DatePicker>
+          </Col>
+          <Col>
+            <DatePicker
+              aria-label="dataFim"
+              initialValue={null}
+              value={dataFim}
+              onChange={(evento) => {
+                setDataFim(evento.format("DD/MM/YYYY"));
+              }}
+              test={{ "aria-label": "dataFim" }}
+            ></DatePicker>
+          </Col>
+          <Col>
+            <Button onClick={pesquisar}>Pesquisar</Button>
+          </Col>
+        </Row>
+      )}
       <Row>
         <Col>
           <div>

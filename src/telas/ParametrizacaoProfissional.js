@@ -6,6 +6,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, {
   Search,
 } from "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min";
+import { isMobile } from "react-device-detect";
 
 import pagination from "../componentes/Pagination";
 import BotaoExportar from "../componentes/BotaoExportar";
@@ -110,7 +111,7 @@ function ParametrizacaoProfissional() {
             setTelaAtiva(4);
           }}
         >
-          Listar Horário
+          {isMobile ? "Horários" : "Listar Horário"}
         </Button>
       </div>
     );
