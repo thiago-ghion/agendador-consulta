@@ -483,25 +483,25 @@ test("Alterar usuário - salvar processo - erro senha", async () => {
 test("Alterar usuário - resetar senha - cancelar o processo", async () => {
   mockListaUsuario = [
     {
-      idUsuario: 1,
+      idUsuario: 2,
       nomeUsuario: "catarina349",
       indicadorAdministrador: "S",
       indicadorAtivo: "S",
     },
     {
-      idUsuario: 2,
+      idUsuario: 3,
       nomeUsuario: "luiz374",
       indicadorAdministrador: "N",
       indicadorAtivo: "S",
     },
     {
-      idUsuario: 3,
+      idUsuario: 4,
       nomeUsuario: "luiz375",
       indicadorAdministrador: "S",
       indicadorAtivo: "N",
     },
     {
-      idUsuario: 4,
+      idUsuario: 5,
       nomeUsuario: "luiz376",
       indicadorAdministrador: "N",
       indicadorAtivo: "N",
@@ -542,25 +542,25 @@ test("Alterar usuário - resetar senha - cancelar o processo", async () => {
 test("Alterar usuário - resetar senha - salvar o processo", async () => {
   mockListaUsuario = [
     {
-      idUsuario: 1,
+      idUsuario: 2,
       nomeUsuario: "catarina349",
       indicadorAdministrador: "S",
       indicadorAtivo: "S",
     },
     {
-      idUsuario: 2,
+      idUsuario: 3,
       nomeUsuario: "luiz374",
       indicadorAdministrador: "N",
       indicadorAtivo: "S",
     },
     {
-      idUsuario: 3,
+      idUsuario: 4,
       nomeUsuario: "luiz375",
       indicadorAdministrador: "S",
       indicadorAtivo: "N",
     },
     {
-      idUsuario: 4,
+      idUsuario: 5,
       nomeUsuario: "luiz376",
       indicadorAdministrador: "N",
       indicadorAtivo: "N",
@@ -602,25 +602,25 @@ test("Alterar usuário - resetar senha - salvar o processo", async () => {
 test("Alterar usuário - resetar senha - salvar o processo - senha divergente", async () => {
   mockListaUsuario = [
     {
-      idUsuario: 1,
+      idUsuario: 2,
       nomeUsuario: "catarina349",
       indicadorAdministrador: "S",
       indicadorAtivo: "S",
     },
     {
-      idUsuario: 2,
+      idUsuario: 3,
       nomeUsuario: "luiz374",
       indicadorAdministrador: "N",
       indicadorAtivo: "S",
     },
     {
-      idUsuario: 3,
+      idUsuario: 4,
       nomeUsuario: "luiz375",
       indicadorAdministrador: "S",
       indicadorAtivo: "N",
     },
     {
-      idUsuario: 4,
+      idUsuario: 5,
       nomeUsuario: "luiz376",
       indicadorAdministrador: "N",
       indicadorAtivo: "N",
@@ -662,25 +662,25 @@ test("Alterar usuário - resetar senha - salvar o processo - senha divergente", 
 test("Alterar usuário - resetar senha - falha", async () => {
   mockListaUsuario = [
     {
-      idUsuario: 1,
+      idUsuario: 2,
       nomeUsuario: "catarina349",
       indicadorAdministrador: "S",
       indicadorAtivo: "S",
     },
     {
-      idUsuario: 2,
+      idUsuario: 3,
       nomeUsuario: "luiz374",
       indicadorAdministrador: "N",
       indicadorAtivo: "S",
     },
     {
-      idUsuario: 3,
+      idUsuario: 4,
       nomeUsuario: "luiz375",
       indicadorAdministrador: "S",
       indicadorAtivo: "N",
     },
     {
-      idUsuario: 4,
+      idUsuario: 5,
       nomeUsuario: "luiz376",
       indicadorAdministrador: "N",
       indicadorAtivo: "N",

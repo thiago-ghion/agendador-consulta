@@ -207,7 +207,7 @@ Object {
                           2
                         </td>
                         <td
-                          class="rdtDay rdtToday"
+                          class="rdtDay"
                           data-month="8"
                           data-value="3"
                           data-year="2022"
@@ -215,7 +215,7 @@ Object {
                           3
                         </td>
                         <td
-                          class="rdtDay"
+                          class="rdtDay rdtToday"
                           data-month="8"
                           data-value="4"
                           data-year="2022"
@@ -673,7 +673,7 @@ Object {
                           2
                         </td>
                         <td
-                          class="rdtDay rdtToday"
+                          class="rdtDay"
                           data-month="8"
                           data-value="3"
                           data-year="2022"
@@ -681,7 +681,7 @@ Object {
                           3
                         </td>
                         <td
-                          class="rdtDay"
+                          class="rdtDay rdtToday"
                           data-month="8"
                           data-value="4"
                           data-year="2022"
@@ -1454,7 +1454,7 @@ Object {
                         2
                       </td>
                       <td
-                        class="rdtDay rdtToday"
+                        class="rdtDay"
                         data-month="8"
                         data-value="3"
                         data-year="2022"
@@ -1462,7 +1462,7 @@ Object {
                         3
                       </td>
                       <td
-                        class="rdtDay"
+                        class="rdtDay rdtToday"
                         data-month="8"
                         data-value="4"
                         data-year="2022"
@@ -1920,7 +1920,7 @@ Object {
                         2
                       </td>
                       <td
-                        class="rdtDay rdtToday"
+                        class="rdtDay"
                         data-month="8"
                         data-value="3"
                         data-year="2022"
@@ -1928,7 +1928,7 @@ Object {
                         3
                       </td>
                       <td
-                        class="rdtDay"
+                        class="rdtDay rdtToday"
                         data-month="8"
                         data-value="4"
                         data-year="2022"
