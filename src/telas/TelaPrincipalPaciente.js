@@ -10,33 +10,22 @@ import Navbar from "react-bootstrap/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
-  faUser,
-  faClock,
-  faPerson,
   faKey,
-  faUserNurse,
   faDoorOpen,
-  faTable,
   faCalendarDay,
-  faIdBadge,
 } from "@fortawesome/free-solid-svg-icons";
 import { isMobile } from "react-device-detect";
 
 import "../App.css";
-import ParametrizacaoUsuario from "./ParametrizacaoUsuario";
-import TrocaSenhaInternaColaborador from "./TrocaSenhaInternaColaborador";
+
 import { introspectTokenAction, deslogarUsuario } from "../features/loginSlice";
 import { setErro } from "../features/mensagemSlice";
 import { alterarColuna } from "../features/menuSlice";
-import ParametrizacaoHorario from "./ParametrizacaoHorario";
-import ParametrizacaoProfissional from "./ParametrizacaoProfissional";
-import ParametrizacaoPaciente from "./ParametrizacaoPaciente";
-import ListarRegistroAcesso from "./ListarRegistroAcesso";
 import AgendarConsulta from "./AgendarConsulta";
-import ListarConsulta from "./ListarConsulta";
-import Estatisticas from "./Estatisticas";
+import ListarConsultaPaciente from "./ListarConsultaPaciente";
+import TrocaSenhaInternaPaciente from "./TrocaSenhaInternaPaciente";
 
-function TelaPrincipalColaborador() {
+function TelaPrincipalPaciente() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -60,14 +49,14 @@ function TelaPrincipalColaborador() {
         return;
       }
 
-      await dispatch(introspectTokenAction(usuario.access_token));
+      dispatch(introspectTokenAction(usuario.access_token));
 
       if (usuario.nivelUsuario === undefined) {
         navigate("/");
         return;
       }
 
-      if (usuario.nivelUsuario !== 2 && usuario.nivelUsuario !== 3) {
+      if (usuario.nivelUsuario !== 1) {
         navigate("/");
         return;
       }
@@ -79,44 +68,25 @@ function TelaPrincipalColaborador() {
   }, [usuario.nivelUsuario, navigate, usuario, dispatch]);
 
   const acaoSair = async () => {
-    await dispatch(deslogarUsuario());
+    dispatch(deslogarUsuario());
     dispatch(setErro(null));
-    navigate("/loginColaborador");
+    navigate("/");
   };
 
   const formatarHeader = () => {
-    if (!isMobile) {
-      if (usuario.nivelUsuario === 2) {
-        return `Colaborador: ${usuario.nome}`;
-      }
-      return `Administrador: ${usuario.nome}`;
-    } else {
-      return `${usuario.nome}`;
-    }
+    return `${usuario.nome}`;
   };
 
   const escolherTelaAtiva = () => {
     switch (telaAtiva) {
       case 1:
         return <AgendarConsulta></AgendarConsulta>;
-      case 2:
-        return <ParametrizacaoPaciente></ParametrizacaoPaciente>;
       case 3:
-        return <ListarConsulta></ListarConsulta>;
-      case 4:
-        return <ParametrizacaoHorario></ParametrizacaoHorario>;
-      case 5:
-        return <ParametrizacaoProfissional></ParametrizacaoProfissional>;
-      case 6:
-        return <ParametrizacaoUsuario></ParametrizacaoUsuario>;
-      case 7:
-        return <Estatisticas></Estatisticas>;
+        return <ListarConsultaPaciente></ListarConsultaPaciente>;
       case 8:
-        return <TrocaSenhaInternaColaborador></TrocaSenhaInternaColaborador>;
-      case 9:
-        return <ListarRegistroAcesso></ListarRegistroAcesso>;
+        return <TrocaSenhaInternaPaciente></TrocaSenhaInternaPaciente>;
       default:
-        return <ParametrizacaoUsuario></ParametrizacaoUsuario>;
+        return <AgendarConsulta></AgendarConsulta>;
     }
   };
 
@@ -171,15 +141,7 @@ function TelaPrincipalColaborador() {
                       <FontAwesomeIcon icon={faCalendar} />
                       {` Agendar consulta`}
                     </Nav.Link>
-                    <Nav.Link
-                      eventKey="2"
-                      onClick={() => {
-                        trocarTelaAtiva(2);
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faPerson} />
-                      {` Cadastro paciente`}
-                    </Nav.Link>
+
                     <Nav.Link
                       eventKey="3"
                       onClick={() => {
@@ -190,64 +152,18 @@ function TelaPrincipalColaborador() {
 
                       {` Listar consultas`}
                     </Nav.Link>
-                    <Nav.Link
-                      eventKey="4"
-                      onClick={() => {
-                        trocarTelaAtiva(4);
-                      }}
-                      disabled={usuario.nivelUsuario !== 3}
-                    >
-                      <FontAwesomeIcon icon={faClock} />
-                      {` Parametrização horário`}
-                    </Nav.Link>
-                    <Nav.Link
-                      eventKey="5"
-                      onClick={() => {
-                        trocarTelaAtiva(5);
-                      }}
-                      disabled={usuario.nivelUsuario !== 3}
-                    >
-                      <FontAwesomeIcon icon={faUserNurse} />
-                      {` Parametrização profissional`}
-                    </Nav.Link>
-                    <Nav.Link
-                      eventKey="6"
-                      onClick={() => {
-                        trocarTelaAtiva(6);
-                      }}
-                      disabled={usuario.nivelUsuario !== 3}
-                    >
-                      <FontAwesomeIcon icon={faUser} />
-                      {` Parametrização usuário`}
-                    </Nav.Link>
-                    <Nav.Link
-                      eventKey="7"
-                      onClick={() => {
-                        trocarTelaAtiva(7);
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTable} />
-                      {` Estatísticas`}
-                    </Nav.Link>
+
                     <Nav.Link
                       eventKey="8"
                       onClick={() => {
                         trocarTelaAtiva(8);
                       }}
+                      disabled={!usuario.isInterno}
                     >
                       <FontAwesomeIcon icon={faKey} />
                       {` Trocar senha`}
                     </Nav.Link>
-                    <Nav.Link
-                      eventKey="9"
-                      disabled={usuario.nivelUsuario !== 3}
-                      onClick={() => {
-                        trocarTelaAtiva(9);
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faIdBadge} />
-                      {` Registros de acesso`}
-                    </Nav.Link>
+
                     <Nav.Link
                       eventKey="10"
                       onClick={() => {
@@ -274,4 +190,4 @@ function TelaPrincipalColaborador() {
   return carregarTela();
 }
 
-export default TelaPrincipalColaborador;
+export default TelaPrincipalPaciente;

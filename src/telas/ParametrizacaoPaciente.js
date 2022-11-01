@@ -17,6 +17,8 @@ function ParametrizacaoPaciente() {
   const { listaPaciente } = useSelector((state) => state.paciente);
   const [telaAtiva, setTelaAtiva] = useState(1);
   const [objetoAlteracao, setObjetoAlteracao] = useState({});
+  const [objetoHistorico, setObjetoHistorico] = useState({});
+
 
   useEffect(() => {
     const acao = async () => {
@@ -47,8 +49,8 @@ function ParametrizacaoPaciente() {
     return (
       <Button
         variant="primary"
-        disabled
         onClick={() => {
+          setObjetoHistorico(row);
           setTelaAtiva(4);
         }}
       >
@@ -166,6 +168,7 @@ function ParametrizacaoPaciente() {
       return (
         <ParametrizacaoPacienteHistorico
           setTelaAtiva={setTelaAtiva}
+          idPaciente={objetoHistorico.idPaciente}
         ></ParametrizacaoPacienteHistorico>
       );
     default:

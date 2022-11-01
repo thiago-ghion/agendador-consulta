@@ -15,47 +15,6 @@ Object {
             class="col"
           >
             <div
-              style="height: 100px;"
-            />
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col-md-10"
-          />
-          <div
-            class="col"
-          >
-            <button
-              class="btn btn-link"
-              type="button"
-            >
-              Acesso paciente
-            </button>
-          </div>
-        </div>
-        <div
-          class="justify-content-md-center row"
-        >
-          <div
-            class="col-md-4"
-          >
-            <center>
-              <h2>
-                Login
-              </h2>
-            </center>
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
-            <div
               style="height: 20px;"
             />
           </div>
@@ -64,95 +23,98 @@ Object {
           class=""
         >
           <div
-            class="justify-content-md-center row"
+            class="row"
           >
             <div
               class="col-md-6"
             >
-              <div
-                class="mb-3"
-              >
+              <div>
                 <div
-                  class="mb-3 form-floating"
-                >
-                  <input
-                    class="form-control"
-                    maxlength="15"
-                    placeholder="Informe o usuário"
-                    type="text"
-                    value=""
-                  />
-                  <label>
-                    Usuário
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="justify-content-md-center row"
-          >
-            <div
-              class="col-md-6"
-            >
-              <div
-                class="mb-3"
-              >
-                <div
-                  class="mb-3 form-floating"
+                  class="mb-3 input-group"
                 >
                   <input
                     class="form-control"
                     maxlength="8"
-                    placeholder="Informe a senha"
+                    placeholder="Informe a senha atual"
                     type="password"
                     value=""
                   />
-                  <label>
-                    Senha
-                  </label>
+                  <span
+                    class="input-group-text"
+                    style="color: rgb(255, 255, 255); background-color: red; font-weight: bold;"
+                  >
+                    ✖
+                  </span>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="justify-content-md-center row"
-          >
-            <div
-              class="align-self-end col-md-6"
-            >
-              <div
-                class="mb-3"
-              >
-                <a
-                  class="link-primary"
-                  href="/trocaSenhaColaborador"
-                >
-                  Trocar a senha
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="justify-content-md-center row"
+            class="row"
           >
             <div
               class="col-md-6"
             >
-              <div
-                class="mb-3"
-              >
+              <div>
                 <div
-                  class="d-grid gap-2"
+                  class="mb-3 input-group"
                 >
-                  <button
-                    class="btn btn-primary btn-lg"
-                    type="button"
+                  <input
+                    class="form-control"
+                    maxlength="8"
+                    placeholder="Informe a senha nova"
+                    type="password"
+                    value=""
+                  />
+                  <span
+                    class="input-group-text"
+                    style="color: rgb(255, 255, 255); background-color: red; font-weight: bold;"
                   >
-                    Login
-                  </button>
+                    ✖
+                  </span>
                 </div>
               </div>
+            </div>
+          </div>
+          <div
+            class="row"
+          >
+            <div
+              class="col-md-6"
+            >
+              <div>
+                <div
+                  class="mb-3 input-group"
+                >
+                  <input
+                    class="form-control"
+                    maxlength="8"
+                    placeholder="Repita a senha nova"
+                    type="password"
+                    value=""
+                  />
+                  <span
+                    class="input-group-text"
+                    style="color: rgb(255, 255, 255); background-color: red; font-weight: bold;"
+                  >
+                    ✖
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="row"
+          >
+            <div
+              class="col-md-6"
+            >
+              <button
+                class="btn btn-primary"
+                type="button"
+              >
+                Trocar
+              </button>
             </div>
           </div>
         </form>
@@ -170,47 +132,6 @@ Object {
           class="col"
         >
           <div
-            style="height: 100px;"
-          />
-        </div>
-      </div>
-      <div
-        class="row"
-      >
-        <div
-          class="col-md-10"
-        />
-        <div
-          class="col"
-        >
-          <button
-            class="btn btn-link"
-            type="button"
-          >
-            Acesso paciente
-          </button>
-        </div>
-      </div>
-      <div
-        class="justify-content-md-center row"
-      >
-        <div
-          class="col-md-4"
-        >
-          <center>
-            <h2>
-              Login
-            </h2>
-          </center>
-        </div>
-      </div>
-      <div
-        class="row"
-      >
-        <div
-          class="col"
-        >
-          <div
             style="height: 20px;"
           />
         </div>
@@ -219,95 +140,98 @@ Object {
         class=""
       >
         <div
-          class="justify-content-md-center row"
+          class="row"
         >
           <div
             class="col-md-6"
           >
-            <div
-              class="mb-3"
-            >
+            <div>
               <div
-                class="mb-3 form-floating"
-              >
-                <input
-                  class="form-control"
-                  maxlength="15"
-                  placeholder="Informe o usuário"
-                  type="text"
-                  value=""
-                />
-                <label>
-                  Usuário
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="justify-content-md-center row"
-        >
-          <div
-            class="col-md-6"
-          >
-            <div
-              class="mb-3"
-            >
-              <div
-                class="mb-3 form-floating"
+                class="mb-3 input-group"
               >
                 <input
                   class="form-control"
                   maxlength="8"
-                  placeholder="Informe a senha"
+                  placeholder="Informe a senha atual"
                   type="password"
                   value=""
                 />
-                <label>
-                  Senha
-                </label>
+                <span
+                  class="input-group-text"
+                  style="color: rgb(255, 255, 255); background-color: red; font-weight: bold;"
+                >
+                  ✖
+                </span>
               </div>
             </div>
           </div>
         </div>
         <div
-          class="justify-content-md-center row"
-        >
-          <div
-            class="align-self-end col-md-6"
-          >
-            <div
-              class="mb-3"
-            >
-              <a
-                class="link-primary"
-                href="/trocaSenhaColaborador"
-              >
-                Trocar a senha
-              </a>
-            </div>
-          </div>
-        </div>
-        <div
-          class="justify-content-md-center row"
+          class="row"
         >
           <div
             class="col-md-6"
           >
-            <div
-              class="mb-3"
-            >
+            <div>
               <div
-                class="d-grid gap-2"
+                class="mb-3 input-group"
               >
-                <button
-                  class="btn btn-primary btn-lg"
-                  type="button"
+                <input
+                  class="form-control"
+                  maxlength="8"
+                  placeholder="Informe a senha nova"
+                  type="password"
+                  value=""
+                />
+                <span
+                  class="input-group-text"
+                  style="color: rgb(255, 255, 255); background-color: red; font-weight: bold;"
                 >
-                  Login
-                </button>
+                  ✖
+                </span>
               </div>
             </div>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-6"
+          >
+            <div>
+              <div
+                class="mb-3 input-group"
+              >
+                <input
+                  class="form-control"
+                  maxlength="8"
+                  placeholder="Repita a senha nova"
+                  type="password"
+                  value=""
+                />
+                <span
+                  class="input-group-text"
+                  style="color: rgb(255, 255, 255); background-color: red; font-weight: bold;"
+                >
+                  ✖
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-6"
+          >
+            <button
+              class="btn btn-primary"
+              type="button"
+            >
+              Trocar
+            </button>
           </div>
         </div>
       </form>

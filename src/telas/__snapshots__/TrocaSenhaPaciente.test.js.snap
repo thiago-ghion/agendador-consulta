@@ -20,23 +20,6 @@ Object {
           </div>
         </div>
         <div
-          class="row"
-        >
-          <div
-            class="col-md-10"
-          />
-          <div
-            class="col"
-          >
-            <button
-              class="btn btn-link"
-              type="button"
-            >
-              Acesso paciente
-            </button>
-          </div>
-        </div>
-        <div
           class="justify-content-md-center row"
         >
           <div
@@ -44,7 +27,7 @@ Object {
           >
             <center>
               <h2>
-                Login
+                Trocar senha
               </h2>
             </center>
           </div>
@@ -72,20 +55,14 @@ Object {
               <div
                 class="mb-3"
               >
-                <div
-                  class="mb-3 form-floating"
-                >
-                  <input
-                    class="form-control"
-                    maxlength="15"
-                    placeholder="Informe o usuário"
-                    type="text"
-                    value=""
-                  />
-                  <label>
-                    Usuário
-                  </label>
-                </div>
+                <input
+                  class="form-control"
+                  id="formPaciente"
+                  maxlength="255"
+                  placeholder="Informe o email"
+                  type="text"
+                  value=""
+                />
               </div>
             </div>
           </div>
@@ -98,20 +75,14 @@ Object {
               <div
                 class="mb-3"
               >
-                <div
-                  class="mb-3 form-floating"
-                >
-                  <input
-                    class="form-control"
-                    maxlength="8"
-                    placeholder="Informe a senha"
-                    type="password"
-                    value=""
-                  />
-                  <label>
-                    Senha
-                  </label>
-                </div>
+                <input
+                  class="form-control"
+                  id="formPaciente"
+                  maxlength="8"
+                  placeholder="Informe a senha anterior"
+                  type="password"
+                  value=""
+                />
               </div>
             </div>
           </div>
@@ -119,17 +90,39 @@ Object {
             class="justify-content-md-center row"
           >
             <div
-              class="align-self-end col-md-6"
+              class="col-md-6"
             >
               <div
                 class="mb-3"
               >
-                <a
-                  class="link-primary"
-                  href="/trocaSenhaColaborador"
-                >
-                  Trocar a senha
-                </a>
+                <input
+                  class="form-control"
+                  id="formPaciente"
+                  maxlength="8"
+                  placeholder="Informe a senha nova"
+                  type="password"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="justify-content-md-center row"
+          >
+            <div
+              class="col-md-6"
+            >
+              <div
+                class="mb-3"
+              >
+                <input
+                  class="form-control"
+                  id="formUsuario"
+                  maxlength="8"
+                  placeholder="Repetir a senha nova"
+                  type="password"
+                  value=""
+                />
               </div>
             </div>
           </div>
@@ -149,7 +142,13 @@ Object {
                     class="btn btn-primary btn-lg"
                     type="button"
                   >
-                    Login
+                    Trocar
+                  </button>
+                  <button
+                    class="btn btn-danger btn-lg"
+                    type="button"
+                  >
+                    Cancelar
                   </button>
                 </div>
               </div>
@@ -175,23 +174,6 @@ Object {
         </div>
       </div>
       <div
-        class="row"
-      >
-        <div
-          class="col-md-10"
-        />
-        <div
-          class="col"
-        >
-          <button
-            class="btn btn-link"
-            type="button"
-          >
-            Acesso paciente
-          </button>
-        </div>
-      </div>
-      <div
         class="justify-content-md-center row"
       >
         <div
@@ -199,7 +181,7 @@ Object {
         >
           <center>
             <h2>
-              Login
+              Trocar senha
             </h2>
           </center>
         </div>
@@ -227,20 +209,14 @@ Object {
             <div
               class="mb-3"
             >
-              <div
-                class="mb-3 form-floating"
-              >
-                <input
-                  class="form-control"
-                  maxlength="15"
-                  placeholder="Informe o usuário"
-                  type="text"
-                  value=""
-                />
-                <label>
-                  Usuário
-                </label>
-              </div>
+              <input
+                class="form-control"
+                id="formPaciente"
+                maxlength="255"
+                placeholder="Informe o email"
+                type="text"
+                value=""
+              />
             </div>
           </div>
         </div>
@@ -253,20 +229,14 @@ Object {
             <div
               class="mb-3"
             >
-              <div
-                class="mb-3 form-floating"
-              >
-                <input
-                  class="form-control"
-                  maxlength="8"
-                  placeholder="Informe a senha"
-                  type="password"
-                  value=""
-                />
-                <label>
-                  Senha
-                </label>
-              </div>
+              <input
+                class="form-control"
+                id="formPaciente"
+                maxlength="8"
+                placeholder="Informe a senha anterior"
+                type="password"
+                value=""
+              />
             </div>
           </div>
         </div>
@@ -274,17 +244,39 @@ Object {
           class="justify-content-md-center row"
         >
           <div
-            class="align-self-end col-md-6"
+            class="col-md-6"
           >
             <div
               class="mb-3"
             >
-              <a
-                class="link-primary"
-                href="/trocaSenhaColaborador"
-              >
-                Trocar a senha
-              </a>
+              <input
+                class="form-control"
+                id="formPaciente"
+                maxlength="8"
+                placeholder="Informe a senha nova"
+                type="password"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="justify-content-md-center row"
+        >
+          <div
+            class="col-md-6"
+          >
+            <div
+              class="mb-3"
+            >
+              <input
+                class="form-control"
+                id="formUsuario"
+                maxlength="8"
+                placeholder="Repetir a senha nova"
+                type="password"
+                value=""
+              />
             </div>
           </div>
         </div>
@@ -304,7 +296,13 @@ Object {
                   class="btn btn-primary btn-lg"
                   type="button"
                 >
-                  Login
+                  Trocar
+                </button>
+                <button
+                  class="btn btn-danger btn-lg"
+                  type="button"
+                >
+                  Cancelar
                 </button>
               </div>
             </div>

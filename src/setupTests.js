@@ -21,4 +21,6 @@ if (!String.prototype.replaceAll) {
 
 window.scrollTo = () => {};
 
+global.ResizeObserver = require('resize-observer-polyfill')
+
 process.on("unhandledRejection", (reason) => {});

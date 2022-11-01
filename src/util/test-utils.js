@@ -12,6 +12,7 @@ import usuarioReducer from "../features/usuarioSlice";
 import loadingReducer from "../features/loadingSlice";
 import mensagemgReducer from "../features/mensagemSlice";
 import menuSlice from "../features/menuSlice";
+import estatisticaReducer from "../features/estatisticaSlice";
 
 export function renderWithProviders(
   ui,
@@ -29,6 +30,7 @@ export function renderWithProviders(
         loading: loadingReducer,
         mensagem: mensagemgReducer,
         menu: menuSlice,
+        estatistica: estatisticaReducer,
       },
       preloadedState,
     }),

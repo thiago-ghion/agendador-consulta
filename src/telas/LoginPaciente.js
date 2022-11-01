@@ -9,28 +9,34 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import "../App.css";
-import { logarColaborador } from "../features/loginSlice";
+import {
+  logarPacienteFacebook,
+  logarPacienteGoogle,
+  logarPacienteInterno,
+} from "../features/loginSlice";
 import { setErro } from "../features/mensagemSlice";
+import GoogleAuth from "../componentes/GoogleAuth";
+import FacebookLogin from "react-facebook-login";
 
-function LoginColaborador() {
+function LoginPaciente() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  let usuarioInput = {};
+  let emailInput = {};
   let senhaInput = {};
 
-  let [usuario, setUsuario] = useState("");
+  let [email, setEmail] = useState("");
   let [senha, setSenha] = useState("");
 
   const isFormularioValido = () => {
-    if (usuario === "") {
-      dispatch(setErro("Preencha o usuário do colaborador"));
-      usuarioInput.focus();
+    if (email === "") {
+      dispatch(setErro("Preencha o email do paciente"));
+      emailInput.focus();
       return false;
     }
 
     if (senha === "") {
-      dispatch(setErro("Preencha a senha do colaborador"));
+      dispatch(setErro("Preencha a senha do paciente"));
       senhaInput.focus();
       return false;
     }
@@ -44,20 +50,45 @@ function LoginColaborador() {
     }
 
     const resposta = await dispatch(
-      logarColaborador({ usuario: usuario, senha: senha })
+      logarPacienteInterno({ usuario: email, senha: senha })
     );
 
     if (resposta.error === undefined) {
-      navigate("/menuColaborador");
-    } else {
-      if (resposta.payload.senhaResetada !== undefined) {
-        navigate("/trocaSenhaColaborador");
-      }
+      navigate("/menuPaciente");
     }
   };
 
-  const acessoPaciente = () => {
-    navigate("/");
+  const acessoColaborador = () => {
+    navigate("/loginColaborador");
+  };
+
+  const cadastrarPaciente = () => {
+    dispatch(setErro(null));
+    navigate("/cadastrarPaciente");
+  };
+
+  const processarLoginGoogle = async (response) => {
+    const resposta = await dispatch(
+      logarPacienteGoogle({ credential: response.credential })
+    );
+
+    if (resposta.error === undefined) {
+      navigate("/menuPaciente");
+    } else {
+      dispatch(setErro("Falha no login pelo Google"));
+    }
+  };
+
+  const processarLoginFacebook = async (response) => {
+    const resposta = await dispatch(
+      logarPacienteFacebook({ credential: response.accessToken })
+    );
+
+    if (resposta.error === undefined) {
+      navigate("/menuPaciente");
+    } else {
+      dispatch(setErro("Falha no login pelo Facebook"));
+    }
   };
 
   return (
@@ -70,8 +101,8 @@ function LoginColaborador() {
       <Row>
         <Col md={10}></Col>
         <Col>
-          <Button variant="link" onClick={acessoPaciente}>
-            Acesso paciente
+          <Button variant="link" onClick={acessoColaborador}>
+            Acesso colaborador
           </Button>
         </Col>
       </Row>
@@ -91,18 +122,18 @@ function LoginColaborador() {
         <Row className="justify-content-md-center">
           <Col md={6}>
             <Form.Group className="mb-3" controlId="formUsuario">
-              <FloatingLabel label="Usuário" className="mb-3">
+              <FloatingLabel label="Email" className="mb-3">
                 <Form.Control
                   type="text"
-                  placeholder="Informe o usuário"
-                  value={usuario}
-                  maxLength="15"
+                  placeholder="Informe o email"
+                  value={email}
+                  maxLength="255"
                   autoFocus
                   onChange={(event) => {
-                    setUsuario(event.target.value);
+                    setEmail(event.target.value);
                   }}
                   ref={(input) => {
-                    usuarioInput = input;
+                    emailInput = input;
                   }}
                 />
               </FloatingLabel>
@@ -133,7 +164,7 @@ function LoginColaborador() {
         <Row className="justify-content-md-center">
           <Col md={6} className="align-self-end">
             <Form.Group className="mb-3" controlId="formBotaoLogin">
-              <a href="/trocaSenhaColaborador" className="link-primary">
+              <a href="/trocaSenhaPaciente" className="link-primary">
                 Trocar a senha
               </a>
             </Form.Group>
@@ -151,9 +182,53 @@ function LoginColaborador() {
             </Form.Group>
           </Col>
         </Row>
+
+        <Row className="justify-content-md-center">
+          <Col md={4}>
+            <center>
+              <FacebookLogin
+                appId="1714354318929389"
+                autoLoad={false}
+                fields="name,email"
+                scope="public_profile,email"
+                authType="reauthenticate"
+                size="small"
+                textButton="Login com Facebook"
+                language="pt_BR"
+                callback={processarLoginFacebook}
+                icon="fa-facebook"
+              />
+            </center>
+          </Col>
+        </Row>
+        <br></br>
+        <Row className="justify-content-md-center">
+          <Col md={4}>
+            <center>
+              <GoogleAuth
+                credential="483272976648-prjup2c5kf0k8nt35bvq84mcb6dujpl1.apps.googleusercontent.com"
+                handleCredentialResponse={processarLoginGoogle}
+              ></GoogleAuth>
+            </center>
+          </Col>
+        </Row>
+
+        <Row className="justify-content-md-center">
+          <Col md={4}>
+            <center>
+              <Button
+                variant="link"
+                data-testid="cadastrar"
+                onClick={cadastrarPaciente}
+              >
+                Não tem uma conta? Cadastre-se
+              </Button>
+            </center>
+          </Col>
+        </Row>
       </Form>
     </Container>
   );
 }
 
-export default LoginColaborador;
+export default LoginPaciente;

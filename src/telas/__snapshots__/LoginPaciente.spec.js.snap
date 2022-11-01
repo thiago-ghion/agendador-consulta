@@ -32,7 +32,7 @@ Object {
               class="btn btn-link"
               type="button"
             >
-              Acesso paciente
+              Acesso colaborador
             </button>
           </div>
         </div>
@@ -77,13 +77,13 @@ Object {
                 >
                   <input
                     class="form-control"
-                    maxlength="15"
-                    placeholder="Informe o usuário"
+                    maxlength="255"
+                    placeholder="Informe o email"
                     type="text"
                     value=""
                   />
                   <label>
-                    Usuário
+                    Email
                   </label>
                 </div>
               </div>
@@ -126,7 +126,7 @@ Object {
               >
                 <a
                   class="link-primary"
-                  href="/trocaSenhaColaborador"
+                  href="/trocaSenhaPaciente"
                 >
                   Trocar a senha
                 </a>
@@ -153,6 +153,42 @@ Object {
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+          <div
+            class="justify-content-md-center row"
+          >
+            <div
+              class="col-md-4"
+            >
+              <center />
+            </div>
+          </div>
+          <br />
+          <div
+            class="justify-content-md-center row"
+          >
+            <div
+              class="col-md-4"
+            >
+              <center />
+            </div>
+          </div>
+          <div
+            class="justify-content-md-center row"
+          >
+            <div
+              class="col-md-4"
+            >
+              <center>
+                <button
+                  class="btn btn-link"
+                  data-testid="cadastrar"
+                  type="button"
+                >
+                  Não tem uma conta? Cadastre-se
+                </button>
+              </center>
             </div>
           </div>
         </form>
@@ -187,7 +223,7 @@ Object {
             class="btn btn-link"
             type="button"
           >
-            Acesso paciente
+            Acesso colaborador
           </button>
         </div>
       </div>
@@ -232,13 +268,13 @@ Object {
               >
                 <input
                   class="form-control"
-                  maxlength="15"
-                  placeholder="Informe o usuário"
+                  maxlength="255"
+                  placeholder="Informe o email"
                   type="text"
                   value=""
                 />
                 <label>
-                  Usuário
+                  Email
                 </label>
               </div>
             </div>
@@ -281,7 +317,7 @@ Object {
             >
               <a
                 class="link-primary"
-                href="/trocaSenhaColaborador"
+                href="/trocaSenhaPaciente"
               >
                 Trocar a senha
               </a>
@@ -308,6 +344,42 @@ Object {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+        <div
+          class="justify-content-md-center row"
+        >
+          <div
+            class="col-md-4"
+          >
+            <center />
+          </div>
+        </div>
+        <br />
+        <div
+          class="justify-content-md-center row"
+        >
+          <div
+            class="col-md-4"
+          >
+            <center />
+          </div>
+        </div>
+        <div
+          class="justify-content-md-center row"
+        >
+          <div
+            class="col-md-4"
+          >
+            <center>
+              <button
+                class="btn btn-link"
+                data-testid="cadastrar"
+                type="button"
+              >
+                Não tem uma conta? Cadastre-se
+              </button>
+            </center>
           </div>
         </div>
       </form>

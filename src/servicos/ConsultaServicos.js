@@ -48,4 +48,17 @@ const cancelar = async (
   return resposta;
 };
 
-export { agendar, listarConsultaTodasProfissional, cancelar };
+const listarConsultaTodasPaciente = async (idPaciente, dataInicio, dataFim) => {
+  const resposta = await axios.get(
+    `${URL_API}/v1/consulta/listarConsultaTodasPaciente?idPaciente=${idPaciente}&dataInicio=${dataInicio}&dataFim=${dataFim}`
+  );
+
+  return resposta;
+};
+
+export {
+  agendar,
+  listarConsultaTodasProfissional,
+  listarConsultaTodasPaciente,
+  cancelar,
+};

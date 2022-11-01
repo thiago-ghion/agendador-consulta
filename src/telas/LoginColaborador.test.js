@@ -36,11 +36,13 @@ beforeEach(() => {
 });
 
 test("Renderização componente", async () => {
-  expect(renderWithProviders(
-    <Router>
-      <LoginColaborador />
-    </Router>
-  )).toMatchSnapshot();
+  expect(
+    renderWithProviders(
+      <Router>
+        <LoginColaborador />
+      </Router>
+    )
+  ).toMatchSnapshot();
 });
 
 test("Usuário não preenchido ", async () => {
@@ -50,22 +52,20 @@ test("Usuário não preenchido ", async () => {
     </Router>
   );
 
-  const login = await waitFor(() => screen.findByRole("button", /Login/i));
+  const login = await screen.findByRole("button", { name: /Login/i });
   fireEvent.click(login);
 });
 
-test("Senha não preenchido ", async () => {
+test("Senha não preenchida", async () => {
   renderWithProviders(
     <Router>
       <LoginColaborador />
     </Router>
   );
 
-  const usuario = await waitFor(() =>
-    screen.findByPlaceholderText("Informe o usuário")
-  );
+  const usuario = await screen.findByPlaceholderText("Informe o usuário");
   fireEvent.change(usuario, { target: { value: "usuarioteste" } });
-  const login = await waitFor(() => screen.findByRole("button", /Login/i));
+  const login = await screen.findByRole("button", { name: /Login/i });
   fireEvent.click(login);
 });
 
@@ -78,17 +78,13 @@ test("Login com falha", async () => {
     </Router>
   );
 
-  const usuario = await waitFor(() =>
-    screen.findByPlaceholderText("Informe o usuário")
-  );
+  const usuario = await screen.findByPlaceholderText("Informe o usuário");
   fireEvent.change(usuario, { target: { value: "usuarioteste" } });
 
-  const senha = await waitFor(() =>
-    screen.findByPlaceholderText("Informe a senha")
-  );
+  const senha = await screen.findByPlaceholderText("Informe a senha");
   fireEvent.change(senha, { target: { value: "12345678" } });
 
-  const login = await waitFor(() => screen.findByRole("button", /Login/i));
+  const login = await screen.findByRole("button", { name: /Login/i });
   fireEvent.click(login);
 });
 
@@ -102,17 +98,13 @@ test("Login com falha - senha resetada", async () => {
     </Router>
   );
 
-  const usuario = await waitFor(() =>
-    screen.findByPlaceholderText("Informe o usuário")
-  );
+  const usuario = await screen.findByPlaceholderText("Informe o usuário");
   fireEvent.change(usuario, { target: { value: "usuarioteste" } });
 
-  const senha = await waitFor(() =>
-    screen.findByPlaceholderText("Informe a senha")
-  );
+  const senha = await screen.findByPlaceholderText("Informe a senha");
   fireEvent.change(senha, { target: { value: "12345678" } });
 
-  const login = await waitFor(() => screen.findByRole("button", /Login/i));
+  const login = await screen.findByRole("button", { name: /Login/i });
   fireEvent.click(login);
 });
 
@@ -123,16 +115,12 @@ test("Login com sucesso", async () => {
     </Router>
   );
 
-  const usuario = await waitFor(() =>
-    screen.findByPlaceholderText("Informe o usuário")
-  );
+  const usuario = await screen.findByPlaceholderText("Informe o usuário");
   fireEvent.change(usuario, { target: { value: "usuarioteste" } });
 
-  const senha = await waitFor(() =>
-    screen.findByPlaceholderText("Informe a senha")
-  );
+  const senha = await screen.findByPlaceholderText("Informe a senha");
   fireEvent.change(senha, { target: { value: "12345678" } });
 
-  const login = await waitFor(() => screen.findByRole("button", /Login/i));
+  const login = await screen.findByRole("button", { name: /Login/i });
   fireEvent.click(login);
 });
