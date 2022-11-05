@@ -37,6 +37,7 @@ function AgendarConsulta() {
     listaDataDisponivel,
     listaHorarioDisponivel,
   } = useSelector((state) => state.profissional);
+  const { usuario } = useSelector((state) => state.login);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isGradeDataCarregada, setIsGradeDataCarregada] = useState(false);
@@ -116,9 +117,12 @@ function AgendarConsulta() {
   };
 
   const agendar = (row) => async () => {
+    const idPaciente =
+      usuario.nivelUsuario === 1 ? usuario.id : paciente.idPaciente;
+
     const resposta = await dispatch(
       agendarAction({
-        idPaciente: paciente.idPaciente,
+        idPaciente: idPaciente,
         idProfissional: profissional.idProfissional,
         dataConsulta: data.format("DD.MM.YYYY"),
         idHorario: row.idHorario,
@@ -168,24 +172,30 @@ function AgendarConsulta() {
 
   return (
     <div>
-      <br></br>
-      <Row>
-        <Col>
-          <Form.Label>Paciente</Form.Label>
-          <AsyncTypeahead
-            filterBy={filterBy}
-            id="paciente"
-            isLoading={isLoading}
-            onSearch={procuraPaciente}
-            labelKey="nomePaciente"
-            options={listaPaciente}
-            minLength={3}
-            placeholder="Escolha o paciente..."
-            onChange={carregarPaciente}
-            selected={comboPaciente}
-          />
-        </Col>
-      </Row>
+      {usuario.nivelUsuario !== 1 ? (
+        <>
+          <br></br>
+          <Row>
+            <Col>
+              <Form.Label>Paciente</Form.Label>
+              <AsyncTypeahead
+                filterBy={filterBy}
+                id="paciente"
+                isLoading={isLoading}
+                onSearch={procuraPaciente}
+                labelKey="nomePaciente"
+                options={listaPaciente}
+                minLength={3}
+                placeholder="Escolha o paciente..."
+                onChange={carregarPaciente}
+                selected={comboPaciente}
+              />
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <></>
+      )}
       <br></br>
       <Row>
         <Col>

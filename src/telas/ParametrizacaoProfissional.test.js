@@ -135,6 +135,11 @@ test("Entrou em modo de listar horário", async () => {
 });
 
 test("Desativar profissional", async () => {
+  mockDesativar = {
+    idProfissional: 1,
+    nomeProfissional: "Maria da Silva",
+    indicadorAtivo: "S",
+  };
   mockListaHorario = [
     { idHorario: 1, horario: "08:00", indicadorAtivo: "S" },
     { idHorario: 2, horario: "08:30", indicadorAtivo: "S" },

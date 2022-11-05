@@ -10,6 +10,15 @@ const registrarPaciente = async (requisicao) => {
   return resposta;
 };
 
+const cadastrarPaciente = async (requisicao) => {
+  const resposta = await axios.post(
+    `${URL_API}/v1/paciente/cadastrar`,
+    requisicao
+  );
+
+  return resposta;
+};
+
 const alterarPaciente = async (idPaciente, requisicao) => {
   const resposta = await axios.post(
     `${URL_API}/v1/paciente/alterar/${idPaciente}`,
@@ -43,6 +52,7 @@ const consultarPaciente = async (idPaciente) => {
 
 export {
   registrarPaciente,
+  cadastrarPaciente,
   listarPaciente,
   listarParcialPaciente,
   consultarPaciente,

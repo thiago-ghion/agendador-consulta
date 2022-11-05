@@ -5,6 +5,7 @@ import {
   listarPaciente,
   listarParcialPaciente,
   registrarPaciente,
+  cadastrarPaciente,
 } from "../servicos/PacienteServicos";
 
 const initialState = {
@@ -17,6 +18,18 @@ export const registrarPacienteAction = createAsyncThunk(
   async ({ requisicao }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const { data } = await registrarPaciente(requisicao);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const cadastrarPacienteAction = createAsyncThunk(
+  "paciente/cadastrar",
+  async ({ requisicao }, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const { data } = await cadastrarPaciente(requisicao);
       return fulfillWithValue(data);
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -84,6 +97,10 @@ export const pacienteSlice = createSlice({
     [registrarPacienteAction.pending]: () => {},
     [registrarPacienteAction.fulfilled]: (state, { payload }) => {},
     [registrarPacienteAction.rejected]: () => {},
+
+    [cadastrarPacienteAction.pending]: () => {},
+    [cadastrarPacienteAction.fulfilled]: (state, { payload }) => {},
+    [cadastrarPacienteAction.rejected]: () => {},
 
     [alterarPacienteAction.pending]: () => {},
     [alterarPacienteAction.fulfilled]: (state, { payload }) => {},

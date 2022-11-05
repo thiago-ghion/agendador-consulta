@@ -1,69 +1,36 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import InputMask from "react-input-mask";
+import { useDispatch } from "react-redux";
+
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import InputMask from "react-input-mask";
-import { useDispatch, useSelector } from "react-redux";
 
-import {
-  registrarPacienteAction,
-  consultarPacienteAction,
-  alterarPacienteAction,
-} from "../features/pacienteSlice";
+import { cadastrarPacienteAction } from "../features/pacienteSlice";
+import { setErro } from "../features/mensagemSlice";
 
-function ParametrizacaoPacienteManutencao(props) {
+function CadastrarPaciente() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { paciente } = useSelector((state) => state.paciente);
-
+  const [email, setEmail] = useState("");
   const [nomePaciente, setNomePaciente] = useState("");
   const [cpf, setCPF] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
   const [telefone, setTelefone] = useState("");
-  const [email, setEmail] = useState("");
+  let [senha, setSenha] = useState("");
+  let [senhaRepetida, setSenhaRepetida] = useState("");
 
-  const telaCarregada = useRef(false);
-
-  useEffect(() => {
-    if (telaCarregada.current === false) {
-      if (props.modoAlteracao) {
-        const acao = async () => {
-          const resposta = await dispatch(
-            consultarPacienteAction({ idPaciente: props.idPaciente })
-          );
-          if (resposta.error === undefined) {
-            setNomePaciente(resposta.payload.nomePaciente);
-            setCPF(resposta.payload.numeroCPF);
-            setDataNascimento(resposta.payload.dataNascimento);
-            if (resposta.payload.numeroTelefone !== null) {
-              if (resposta.payload.numeroTelefone.length === 10) {
-                setTelefone(
-                  `${resposta.payload.numeroTelefone.substring(
-                    0,
-                    2
-                  )} ${resposta.payload.numeroTelefone.substring(2, 10)}`
-                );
-              } else {
-                setTelefone(resposta.payload.numeroTelefone);
-              }
-            } else {
-              setTelefone("");
-            }
-            setEmail(resposta.payload.enderecoEmail);
-          }
-        };
-        acao();
-      }
-    }
-    telaCarregada.current = true;
-  });
-
-  let nomePacienteInput;
-  let cpfInput;
-  let dataNascimentoInput;
-  let telefoneInput;
-  let emailInput;
+  let emailInput,
+    nomePacienteInput,
+    cpfInput,
+    dataNascimentoInput,
+    telefoneInput,
+    senhaInput,
+    senhaRepetidaInput;
 
   const dataPattern = [
     /[0-3]/,
@@ -95,6 +62,15 @@ function ParametrizacaoPacienteManutencao(props) {
     /[0-9]/,
   ];
 
+  const confirmar = () => {
+    salvar();
+  };
+
+  const cancelar = () => {
+    dispatch(setErro(null));
+    navigate("/");
+  };
+
   const formatarCampo = (texto, isNumerico) => {
     const valor = texto.replaceAll(/[.\-_\(\)\s]/g, "");
     if (valor === "") {
@@ -109,26 +85,19 @@ function ParametrizacaoPacienteManutencao(props) {
   const salvar = async () => {
     const requisicao = {
       nomePaciente: nomePaciente,
-      numeroCPF: cpf !== null ? formatarCampo(cpf, true) : undefined,
-      dataNascimento:
-        dataNascimento !== null
-          ? dataNascimento.replaceAll(/[\/]/g, ".")
-          : undefined,
+      numeroCPF: formatarCampo(cpf, true),
+      dataNascimento: dataNascimento.replaceAll(/[\/]/g, "."),
       numeroTelefone: formatarCampo(telefone, false),
       enderecoEmail: email,
+      senha: senha,
+      senhaRepetida: senhaRepetida,
     };
     let resposta;
 
-    if (props.modoAlteracao) {
-      resposta = await dispatch(
-        alterarPacienteAction({ idPaciente: props.idPaciente, requisicao })
-      );
-    } else {
-      resposta = await dispatch(registrarPacienteAction({ requisicao }));
-    }
+    resposta = await dispatch(cadastrarPacienteAction({ requisicao }));
 
     if (resposta.error === undefined) {
-      props.setTelaAtiva(1);
+      navigate("/");
     } else {
       if (resposta.payload.campo !== undefined) {
         switch (resposta.payload.campo) {
@@ -147,6 +116,12 @@ function ParametrizacaoPacienteManutencao(props) {
           case 5:
             emailInput.focus();
             break;
+          case 6:
+            senhaInput.focus();
+            break;
+          case 7:
+            senhaRepetidaInput.focus();
+            break;
           default:
             break;
         }
@@ -155,13 +130,25 @@ function ParametrizacaoPacienteManutencao(props) {
   };
 
   return (
-    <div>
-      <br></br>
+    <Container>
+      <Row>
+        <Col>
+          <div style={{ height: "100px" }}></div>
+        </Col>
+      </Row>
+      <Row className="justify-content-md-center">
+        <Col md={4}>
+          <center>
+            <h2>Cadastre-se</h2>
+          </center>
+        </Col>
+      </Row>
       <Row>
         <Col>
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
+              size="lg"
               placeholder="Informe o nome do paciente"
               value={nomePaciente}
               autoFocus
@@ -184,6 +171,7 @@ function ParametrizacaoPacienteManutencao(props) {
             <Form.Control
               placeholder="Informe o CPF do paciente"
               value={cpf}
+              size="lg"
               as={InputMask}
               mask="999.999.999-99"
               onChange={(event) => {
@@ -201,6 +189,7 @@ function ParametrizacaoPacienteManutencao(props) {
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
+              size="lg"
               as={InputMask}
               mask={dataPattern}
               placeholder="Informe a data de nascimento"
@@ -220,6 +209,7 @@ function ParametrizacaoPacienteManutencao(props) {
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
+              size="lg"
               placeholder="Informe a telefone"
               value={telefone}
               as={InputMask}
@@ -236,11 +226,13 @@ function ParametrizacaoPacienteManutencao(props) {
           </Form.Group>
         </Col>
       </Row>
+
       <Row>
         <Col>
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
+              size="lg"
               placeholder="Informe a email"
               value={email}
               maxLength="150"
@@ -256,25 +248,77 @@ function ParametrizacaoPacienteManutencao(props) {
           </Form.Group>
         </Col>
       </Row>
-      <Row>
-        <Col md={1}>
-          <Button variant="success" onClick={salvar}>
-            Salvar
-          </Button>
+
+      <Row className="justify-content-md-center">
+        <Col md={6}>
+          <Form.Group className="mb-3" controlId="formUsuario">
+            <Form.Control
+              type="password"
+              size="lg"
+              placeholder="Informe a senha nova"
+              value={senha}
+              maxLength="8"
+              onChange={(event) => {
+                setSenha(event.target.value);
+              }}
+              ref={(input) => {
+                senhaInput = input;
+              }}
+            />
+          </Form.Group>
         </Col>
-        <Col md={1}>
-          <Button
-            variant="danger"
-            onClick={() => {
-              props.setTelaAtiva(1);
-            }}
-          >
-            Cancelar
-          </Button>
+
+        <Col md={6}>
+          <Form.Group className="mb-3" controlId="formUsuario">
+            <Form.Control
+              type="password"
+              size="lg"
+              placeholder="Repetir a senha nova"
+              value={senhaRepetida}
+              maxLength="8"
+              onChange={(event) => {
+                setSenhaRepetida(event.target.value);
+              }}
+              ref={(input) => {
+                senhaRepetidaInput = input;
+              }}
+            />
+          </Form.Group>
         </Col>
       </Row>
-    </div>
+
+      <Row>
+        <Col>
+          <div style={{ height: "20px" }}></div>
+        </Col>
+      </Row>
+      <Row className="justify-content-md-center">
+        <Col md={6}>
+          <Form.Group className="mb-3" controlId="formBotaoLogin">
+            <div className="d-grid gap-2">
+              <Button
+                size="lg"
+                onClick={() => {
+                  confirmar();
+                }}
+              >
+                Confirmar
+              </Button>
+              <Button
+                variant="danger"
+                size="lg"
+                onClick={() => {
+                  cancelar();
+                }}
+              >
+                Cancelar
+              </Button>
+            </div>
+          </Form.Group>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
-export default ParametrizacaoPacienteManutencao;
+export default CadastrarPaciente;

@@ -17,9 +17,6 @@ export const handlers = [
   rest.get("http://localhost:5000/v1/paciente/consultar", (req, res, ctx) => {
     return res(ctx.status(estadoConsultar), ctx.json(mockConsultar));
   }),
-  rest.get("http://localhost:5000/v1/paciente/consultar", (req, res, ctx) => {
-    return res(ctx.status(estadoConsultar), ctx.json(mockConsultar));
-  }),
   rest.post("http://localhost:5000/v1/paciente/registrar", (req, res, ctx) => {
     return res(ctx.status(estadoRegistrar), ctx.json(mockRegistrar));
   }),
@@ -162,6 +159,13 @@ test("Inclusão do paciente com sucesso", async () => {
 });
 
 test("Alteração do paciente com sucesso", async () => {
+  mockConsultar = {
+    nomePaciente: "Teste",
+    numeroCPF: "12345678901",
+    dataNascimento: "01.01.2020",
+    numeroTelefone: "11912345678",
+    enderecoEmail: "teste@teste.com",
+  };
   renderWithProviders(
     <ParametrizacaoPacienteManutencao
       idPaciente={1}
@@ -194,6 +198,13 @@ test("Alteração do paciente com sucesso", async () => {
 });
 
 test("Manutenção do paciente erro no formulário", async () => {
+  mockConsultar = {
+    nomePaciente: "Teste",
+    numeroCPF: "12345678901",
+    dataNascimento: "01.01.2020",
+    numeroTelefone: "11912345678",
+    enderecoEmail: "teste@teste.com",
+  };
   renderWithProviders(
     <ParametrizacaoPacienteManutencao
       modoAlteracao

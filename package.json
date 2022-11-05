@@ -24,7 +24,9 @@
     "react-bootstrap-typeahead": "^6.0.0-rc.3",
     "react-datetime": "^3.1.1",
     "react-device-detect": "^2.2.2",
+    "react-document-meta": "^3.0.0-beta.2",
     "react-dom": "^18.2.0",
+    "react-facebook-login": "^4.1.1",
     "react-imask": "^6.4.2",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-redux": "^8.0.2",
@@ -32,13 +34,14 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.3",
+    "recharts": "^2.1.14",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "node server.js",
-    "iniciar": "react-scripts start",
+    "iniciar": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject"
@@ -63,6 +66,20 @@
   },
   "devDependencies": {
     "jest-watch-typeahead": "^0.6.5",
-    "msw": "^0.44.2"
+    "msw": "^0.44.2",
+    "resize-observer-polyfill": "^1.5.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^d3-shape$": "<rootDir>/node_modules/d3-shape/dist/d3-shape.min.js",
+      "^d3-path$": "<rootDir>/node_modules/d3-path/dist/d3-path.min.js",
+      "^d3-scale$": "<rootDir>/node_modules/d3-scale/dist/d3-scale.min.js",
+      "^d3-array$": "<rootDir>/node_modules/d3-array/dist/d3-array.min.js",
+      "^d3-interpolate$": "<rootDir>/node_modules/d3-interpolate/dist/d3-interpolate.min.js",
+      "^d3-color$": "<rootDir>/node_modules/d3-color/dist/d3-color.min.js",
+      "^d3-format$": "<rootDir>/node_modules/d3-format/dist/d3-format.min.js",
+      "^d3-time$": "<rootDir>/node_modules/d3-time/dist/d3-time.min.js",
+      "^d3-time-format$": "<rootDir>/node_modules/d3-time-format/dist/d3-time-format.min.js"
+    }
   }
 }
