@@ -203,7 +203,7 @@ function AgendarConsulta() {
           <Typeahead
             filterBy={filterBy}
             id="profissional"
-            dropup={true}
+            dropdown={true}
             labelKey="nomeProfissional"
             options={listaProfissionalVigente}
             placeholder="Escolha o profissional..."
